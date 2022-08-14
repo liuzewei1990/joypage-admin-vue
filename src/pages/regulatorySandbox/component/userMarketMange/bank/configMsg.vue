@@ -1,0 +1,698 @@
+<template>
+<!--用户营销配置 银行 页面中 一级条件  组件 -->
+  <div>
+    <div class='contentDiv'>
+      <div class='configMsg' :class='index1==oneLevelUserCondition.length-1?"lastClass":""' v-for='(item1,index1) in oneLevelUserCondition' :key='index1'>
+        <div v-if='item1.dataType!="3"'>
+        <div>
+          <div  class='addBig' v-if='item1.conditionVisible==""'>
+            <span style='cursor:pointer' @click='addConfig("oneLevelUserCondition",index1)'>编辑限制条件</span>
+            <i  v-if='oneLevelUserCondition.filter(i => i.dataType!="3" ).length>1' @click='deleteFun("oneLevelUserCondition",index1)' class='el-icon-delete'></i>
+          </div>
+          <div class='addBigother' v-else>
+            <div class='content'>
+              <i  v-if='oneLevelUserCondition.filter(i => i.dataType!="3" ).length>1' @click='deleteFun("oneLevelUserCondition",index1,item1.id)' class='el-icon-delete'></i>
+              <i  @click='EditFun("oneLevelUserCondition",index1,item1)' class='el-icon-edit'></i>
+              <div class="title" :class='item1.conditionVisible=="0"?"noVisib":""'>{{item1.conditionVisible=='0'?"不可见":"可见"}}条件</div>
+              <ul>
+                <!-- 用户年龄 -->
+                <div v-if='(item1.ageConnSymbol==""||item1.ageConnSymbol==null)&&(item1.userStartAge==""||item1.userStartAge==null)&&(item1.userEndAge==""||item1.userEndAge==null)'></div>
+                <div v-else>
+                  <span>年龄：</span>
+                  <li>{{item1.ageStartSymbol}}{{item1.userStartAge}}{{item1.userStartAge==""||item1.userStartAge==null?"":"岁"}}{{item1.ageConnSymbol==1?"且":""}}{{item1.ageConnSymbol==2?"或":""}}{{item1.ageEndSymbol}}{{item1.userEndAge}}{{item1.userEndAge==""||item1.userEndAge==null?"":"岁"}}</li>
+                </div>
+                
+                <!-- 登陆状态 -->
+                <div v-if='(item1.userRegStatus!=""&&item1.userRegStatus!=null)||(item1.realNameStatus!=""&&item1.realNameStatus!=null)||(item1.openAccountStatus!=""&&item1.openAccountStatus!=null)||(item1.investmentStatus!=""&&item1.investmentStatus!=null)||(item1.holdSharesStatus!=""&&item1.holdSharesStatus!=null)'>
+                  <span>比财：</span>
+                  <li v-if='item1.userRegStatus=="0"'>未登陆</li>
+                  <!-- 登陆时间 -->
+                  <li v-if='(item1.regConnectionSymbol!=""&&item1.regConnectionSymbol!=null)||item1.userRegStatus==1'>已登陆；{{item1.regStartSymbol}}{{item1.regStartTime}}
+                    {{item1.regConnectionSymbol==1?"且":""}}
+                    {{item1.regConnectionSymbol==2?"或":""}}
+                    {{item1.regEndSymbol}}{{item1.regEndTime}}</li>
+                  <li v-else-if='(item1.regStartTime!=""&&item1.regStartTime!=null)||item1.userRegStatus==1'>已登陆；{{item1.regStartSymbol}}{{item1.regStartTime}}</li>
+                  <li v-else-if='(item1.regEndTime!=""&&item1.regEndTime!=null)||item1.userRegStatus==1'>已登陆；{{item1.regEndSymbol}}{{item1.regEndTime}}</li>
+                   <!-- 实名状态1实名0未实名 -->
+                  <li v-if='item1.realNameStatus!=""&&item1.realNameStatus!=null'>{{item1.realNameStatus=='1'?"已实名":"未实名"}}</li>
+                  <!-- 开户状态1开户0未开户 -->
+                  <li v-if='item1.openAccountStatus!=""&&item1.openAccountStatus!=null'>{{item1.openAccountStatus=='1'?"已开户":"未开户"}}</li>
+                  <!-- 投资状态1投资0未投 -->
+                  <li v-if='item1.investmentStatus!=""&&item1.investmentStatus!=null'>{{item1.investmentStatus=='1'?"已投资":"未投资"}}</li>
+                  <!-- 持仓状态1持0未 -->
+                  <li v-if='item1.holdSharesStatus!=""&&item1.holdSharesStatus!=null'>{{item1.holdSharesStatus=='1'?"已持仓":"未持仓"}}</li>
+                </div>
+                
+                
+                <!-- 持仓峰值 -->
+                <div  v-if='((item1.holdSharesPeakValueStartAmount!=""&&item1.holdSharesPeakValueStartAmount!=null)||(item1.holdSharesPeakValueEndAmount!=""&&item1.holdSharesPeakValueEndAmount!=null))||((item1.localBankHoldPeakValueStartAmount!=""&&item1.localBankHoldPeakValueStartAmount!=null)||(item1.localBankHoldPeakValueEndAmount!=""&&item1.localBankHoldPeakValueEndAmount!=null))'>
+                  <span>持仓峰值金额：</span>
+                  <li v-if='(item1.holdSharesPeakValueStartAmount!=""&&item1.holdSharesPeakValueStartAmount!=null)||(item1.holdSharesPeakValueEndAmount!=""&&item1.holdSharesPeakValueEndAmount!=null)'>比财：{{item1.holdSharesPeakValueStartSymbol}}{{item1.holdSharesPeakValueStartAmount}}
+                    {{item1.holdSharesPeakValueConnSymbol==1?"且":""}}
+                    {{item1.holdSharesPeakValueConnSymbol==2?"或":""}}
+                    {{item1.holdSharesPeakValueEndSymbol}}{{item1.holdSharesPeakValueEndAmount}}</li>
+
+                  <li v-if='(item1.localBankHoldPeakValueStartAmount!=""&&item1.localBankHoldPeakValueStartAmount!=null)||(item1.localBankHoldPeakValueEndAmount!=""&&item1.localBankHoldPeakValueEndAmount!=null)'>本银行：{{item1.localBankHoldPeakValueStartSymbol}}{{item1.localBankHoldPeakValueStartAmount}}
+                    <span v-if="item1.localBankHoldPeakValueConnSymbol==1">且</span>
+                    <span v-if="item1.localBankHoldPeakValueConnSymbol==2">或</span>
+                    {{item1.localBankHoldPeakValueEndSymbol}}{{item1.localBankHoldPeakValueEndAmount}}</li>
+                </div>
+                
+                <!-- 普惠账户开户状态开1开户0未开户 -->
+                <div v-if='(item1.puhuiOpenAccountStatus!=""&&item1.puhuiOpenAccountStatus!=null)'>
+                  <span>普惠账户：</span>
+                  <li v-if='item1.puhuiOpenAccountStatus!=""&&item1.puhuiOpenAccountStatus!=null'>{{item1.puhuiOpenAccountStatus=='1'?"已开户":"未开户"}}</li>
+                </div>
+
+                <!-- 本银行的开户状态开1开户0未开户 -->
+                <div v-if='(item1.localBankOpenAccountStatus!=""&&item1.localBankOpenAccountStatus!=null)||(item1.localBankInvestmentStatus!=""&&item1.localBankInvestmentStatus!=null)||(item1.localBankHoldSharsStatus!=""&&item1.localBankHoldSharsStatus!=null)'>
+                  <span>本银行：</span>
+                  <li v-if='item1.localBankOpenAccountStatus!=""&&item1.localBankOpenAccountStatus!=null'>{{item1.localBankOpenAccountStatus=='1'?"已开户":"未开户"}}</li>
+                  <!-- 本银行的投资状态1投0未投 -->
+                  <li v-if='item1.localBankInvestmentStatus!=""&&item1.localBankInvestmentStatus!=null'>{{item1.localBankInvestmentStatus=='1'?"已投资":"未投资"}}</li>
+                  <!-- 本银行的持仓状态 1持仓0未持 -->
+                  <li v-if='item1.localBankHoldSharsStatus!=""&&item1.localBankHoldSharsStatus!=null'>{{item1.localBankHoldSharsStatus=='1'?"已持仓":"未持仓"}}</li>
+                </div>
+                
+                <!-- 限制地域 -->
+                <div v-if='item1.userRegionConditions.length>0&&item1.userRegionConditions[0].province!=""'>
+                  <span>限制地域：</span>
+                  <li v-for='(item2,index2) in item1.userRegionConditions' :key='index2'>
+                    <span v-if='item2.city==""||item2.city==null'>{{item2.province}}；</span>
+                    <span v-else>{{item2.province}}-{{item2.city}}；</span>
+                    {{item2.regPhoneNumCheck=="1"?"登陆手机号归属地":"  "}}
+                    <span v-if='item2.idCardAddressCheck=="1"&&item2.regPhoneNumCheck=="1"'>、</span>
+                    {{item2.idCardAddressCheck=="1"?"身份证地址":"  "}}
+                    <span v-if='item2.gpsLocationCheck=="1"&&(item2.idCardAddressCheck=="1"||item2.regPhoneNumCheck=="1")'>、</span>
+                    {{item2.gpsLocationCheck=="1"?"GPS地理位置  ":""}}
+                  </li>
+                </div>
+                
+                <!-- 产品展示的条件配置 -->
+                <div v-if='item1.prdShowConditons.length>0&&item1.prdShowConditons[0].prdDisplayLocations!=""'>
+                  <span>产品展示位置：</span>
+                  <li v-for='(item2,index2) in item1.prdShowConditons' :key='index2'>
+                    <!-- <p>
+                      时间类型：{{item2.dateType=="1"?"日期":"周期"}}
+                    </p> -->
+                    <p>
+                      <!-- <span>产品展示位置：{{item2.prdDisplayLocationNameList.toString()}}</span> -->
+                      <!--1140 新需求只留位置 -->
+                      <span>{{item2.prdDisplayLocationNameList.toString()}}</span>
+                    </p>
+                    <!-- <p>
+                      <span v-if='item2.dateType==1'>展示时间：{{item2.dateStart}}~{{item2.dateEnd}}</span>
+                    </p>
+                    <p>
+                      <span v-if='item2.dateType==2'>展示周期：
+                        <span v-if='item2.weekCode.toString().indexOf("1")>=0'>周一 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("2")>=0'>周二 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("3")>=0'>周三 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("4")>=0'>周四 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("5")>=0'>周五 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("6")>=0'>周六 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("7")>=0'>周日 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}</span>
+                      </span>
+                    </p> -->
+                  </li>
+                </div>
+                
+                <div v-if='item1.displayConditon.advLocationNameList!=null&&item1.displayConditon.advLocationNameList.length>0'>
+                  <span>广告位：</span> 
+                  <li>{{item1.displayConditon.advLocationNameList.toString()}}</li> 
+                </div>
+                <div v-if='item1.displayConditon.actLocationNameList!=null&&item1.displayConditon.actLocationNameList.length>0'>
+                  <span>活动：</span> 
+                  <li>{{item1.displayConditon.actLocationNameList.toString()}}</li> </div>
+                <div v-if='item1.displayConditon.contentNameList!=null&&item1.displayConditon.contentNameList.length>0'>
+                  <span>内容：</span> 
+                  <li>{{item1.displayConditon.contentNameList.toString()}}</li>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <el-radio-group v-model="item1.condConnSymbol" :disabled='oneDisableRadio' class='radioGroup'>
+          <el-radio-button @click.native.prevent='changeRadio(1,"oneLevelUserCondition",index1)' label=1 value=1>且</el-radio-button>
+          <el-radio-button @click.native.prevent='changeRadio(2,"oneLevelUserCondition",index1)' label=2 value=2>或</el-radio-button>
+        </el-radio-group>
+        </div>
+      </div>
+      <div v-for='(items,index5) in oneLevelUserCondition.filter(i => i.dataType!="3" )' :key="index5">
+        <div class='addSmall'  v-if='index5==oneLevelUserCondition.filter(i => i.dataType!="3" ).length-1'>
+          <span style='cursor:pointer' @click='addERJI("oneLevelUserCondition")'>新增条件</span>
+        </div>
+      </div>
+      <el-radio-group v-model="oneAndTwoLevelSymbol" :disabled='disabledRadio2' class='radioGroup2'>
+        <el-radio-button label=1 value=1>且</el-radio-button>
+        <el-radio-button label=2 value=2>或</el-radio-button>
+      </el-radio-group>
+      <!-- 二级 -->
+      <div style='margin-top:20px' v-if='showtwoLevelUserCondition'>
+
+      <div class='configMsg' :class='index1==twoLevelUserCondition.length-1?"lastClass":""' v-for='(item1,index1) in twoLevelUserCondition' :key='index1'>
+        <div v-if='item1.dataType!="3"'>
+        <div>
+          <div  class='addBig' v-if='item1.conditionVisible==""'>
+            <span style='cursor:pointer' @click='addConfig("twoLevelUserCondition",index1)'>编辑限制条件</span>
+            <i  @click='deleteFun("twoLevelUserCondition",index1)' class='el-icon-delete'></i>
+          </div>
+          <div class='addBigother' v-else>
+            <!-- <ul>-->
+              <!-- <div class='contentDiv' v-for='(item,index) in scope.row.twoLevelUserCondition' :key='index'> -->
+            <div class='content'>
+              <i  @click='deleteFun("twoLevelUserCondition",index1,item1.id)' class='el-icon-delete'></i>
+              <i  @click='EditFun("twoLevelUserCondition",index1,item1)' class='el-icon-edit'></i>
+              <div class="title" :class='item1.conditionVisible=="0"?"noVisib":""'>{{item1.conditionVisible=='0'?"不可见":"可见"}}条件</div>
+              <ul>
+                <!-- 用户年龄 -->
+                <div v-if='(item1.ageConnSymbol==""||item1.ageConnSymbol==null)&&(item1.userStartAge==""||item1.userStartAge==null)&&(item1.userEndAge==""||item1.userEndAge==null)'></div>
+                <div v-else>
+                  <span>年龄：</span>
+                  <li>{{item1.ageStartSymbol}}{{item1.userStartAge}}{{item1.userStartAge==""||item1.userStartAge==null?"":"岁"}}{{item1.ageConnSymbol==1?"且":""}}{{item1.ageConnSymbol==2?"或":""}}{{item1.ageEndSymbol}}{{item1.userEndAge}}{{item1.userEndAge==""||item1.userEndAge==null?"":"岁"}}</li>
+                </div>
+                
+                <!-- 登陆状态 -->
+                <div v-if='(item1.userRegStatus!=""&&item1.userRegStatus!=null)||(item1.realNameStatus!=""&&item1.realNameStatus!=null)||(item1.openAccountStatus!=""&&item1.openAccountStatus!=null)||(item1.investmentStatus!=""&&item1.investmentStatus!=null)||(item1.holdSharesStatus!=""&&item1.holdSharesStatus!=null)'>
+                  <span>比财：</span>
+                  <li v-if='item1.userRegStatus=="0"'>未登陆</li>
+                  <!-- 登陆时间 -->
+                  <li v-if='(item1.regConnectionSymbol!=""&&item1.regConnectionSymbol!=null)||item1.userRegStatus==1'>已登陆；{{item1.regStartSymbol}}{{item1.regStartTime}}
+                    {{item1.regConnectionSymbol==1?"且":""}}
+                    {{item1.regConnectionSymbol==2?"或":""}}
+                    {{item1.regEndSymbol}}{{item1.regEndTime}}</li>
+                  <li v-else-if='(item1.regStartTime!=""&&item1.regStartTime!=null)||item1.userRegStatus==1'>已登陆；{{item1.regStartSymbol}}{{item1.regStartTime}}</li>
+                  <li v-else-if='(item1.regEndTime!=""&&item1.regEndTime!=null)||item1.userRegStatus==1'>已登陆；{{item1.regEndSymbol}}{{item1.regEndTime}}</li>
+                   <!-- 实名状态1实名0未实名 -->
+                  <li v-if='item1.realNameStatus!=""&&item1.realNameStatus!=null'>{{item1.realNameStatus=='1'?"已实名":"未实名"}}</li>
+                  <!-- 开户状态1开户0未开户 -->
+                  <li v-if='item1.openAccountStatus!=""&&item1.openAccountStatus!=null'>{{item1.openAccountStatus=='1'?"已开户":"未开户"}}</li>
+                  <!-- 投资状态1投资0未投 -->
+                  <li v-if='item1.investmentStatus!=""&&item1.investmentStatus!=null'>{{item1.investmentStatus=='1'?"已投资":"未投资"}}</li>
+                  <!-- 持仓状态1持0未 -->
+                  <li v-if='item1.holdSharesStatus!=""&&item1.holdSharesStatus!=null'>{{item1.holdSharesStatus=='1'?"已持仓":"未持仓"}}</li>
+                </div>
+                
+                
+                <!-- 持仓峰值 -->
+                <div  v-if='((item1.holdSharesPeakValueStartAmount!=""&&item1.holdSharesPeakValueStartAmount!=null)||(item1.holdSharesPeakValueEndAmount!=""&&item1.holdSharesPeakValueEndAmount!=null))||((item1.localBankHoldPeakValueStartAmount!=""&&item1.localBankHoldPeakValueStartAmount!=null)||(item1.localBankHoldPeakValueEndAmount!=""&&item1.localBankHoldPeakValueEndAmount!=null))'>
+                  <span>持仓峰值金额：</span>
+                  <li v-if='(item1.holdSharesPeakValueStartAmount!=""&&item1.holdSharesPeakValueStartAmount!=null)||(item1.holdSharesPeakValueEndAmount!=""&&item1.holdSharesPeakValueEndAmount!=null)'>比财：{{item1.holdSharesPeakValueStartSymbol}}{{item1.holdSharesPeakValueStartAmount}}
+                     {{item1.holdSharesPeakValueConnSymbol==1?"且":""}}{{item1.holdSharesPeakValueConnSymbol==2?"或":""}}
+                    {{item1.holdSharesPeakValueEndSymbol}}{{item1.holdSharesPeakValueEndAmount}}</li>
+
+                  <li v-if='(item1.localBankHoldPeakValueStartAmount!=""&&item1.localBankHoldPeakValueStartAmount!=null)||(item1.localBankHoldPeakValueEndAmount!=""&&item1.localBankHoldPeakValueEndAmount!=null)'>本银行：{{item1.localBankHoldPeakValueStartSymbol}}{{item1.localBankHoldPeakValueStartAmount}}
+                    <span v-if="item1.localBankHoldPeakValueConnSymbol==1">且</span>
+                    <span v-if="item1.localBankHoldPeakValueConnSymbol==2">或</span>
+                    {{item1.localBankHoldPeakValueEndSymbol}}{{item1.localBankHoldPeakValueEndAmount}}</li>
+                </div>
+                
+                <!-- 普惠账户开户状态开1开户0未开户 -->
+                <div v-if='(item1.puhuiOpenAccountStatus!=""&&item1.puhuiOpenAccountStatus!=null)'>
+                  <span>普惠账户：</span>
+                  <li v-if='item1.puhuiOpenAccountStatus!=""&&item1.puhuiOpenAccountStatus!=null'>{{item1.puhuiOpenAccountStatus=='1'?"已开户":"未开户"}}</li>
+                </div>
+                
+                <!-- 本银行的开户状态开1开户0未开户 -->
+                <div v-if='(item1.localBankOpenAccountStatus!=""&&item1.localBankOpenAccountStatus!=null)||(item1.localBankInvestmentStatus!=""&&item1.localBankInvestmentStatus!=null)||(item1.localBankHoldSharsStatus!=""&&item1.localBankHoldSharsStatus!=null)'>
+                  <span>本银行：</span>
+                  <li v-if='item1.localBankOpenAccountStatus!=""&&item1.localBankOpenAccountStatus!=null'>{{item1.localBankOpenAccountStatus=='1'?"已开户":"未开户"}}</li>
+                  <!-- 本银行的投资状态1投0未投 -->
+                  <li v-if='item1.localBankInvestmentStatus!=""&&item1.localBankInvestmentStatus!=null'>{{item1.localBankInvestmentStatus=='1'?"已投资":"未投资"}}</li>
+                  <!-- 本银行的持仓状态 1持仓0未持 -->
+                  <li v-if='item1.localBankHoldSharsStatus!=""&&item1.localBankHoldSharsStatus!=null'>{{item1.localBankHoldSharsStatus=='1'?"已持仓":"未持仓"}}</li>
+                </div>
+                
+                <!-- 限制地域 -->
+                <div v-if='item1.userRegionConditions.length>0&&item1.userRegionConditions[0].province!=""'>
+                  <span>限制地域：</span>
+                  <li v-for='(item2,index2) in item1.userRegionConditions' :key='index2'>
+                    <span v-if='item2.city==""||item2.city==null'>{{item2.province}}；</span>
+                    <span v-else>{{item2.province}}-{{item2.city}}；</span>
+                    {{item2.regPhoneNumCheck=="1"?"登陆手机号归属地":"  "}}
+                    <span v-if='item2.idCardAddressCheck=="1"&&item2.regPhoneNumCheck=="1"'>、</span>
+                    {{item2.idCardAddressCheck=="1"?"身份证地址":"  "}}
+                    <span v-if='item2.gpsLocationCheck=="1"&&(item2.idCardAddressCheck=="1"||item2.regPhoneNumCheck=="1")'>、</span>
+                    {{item2.gpsLocationCheck=="1"?"GPS地理位置  ":""}}
+                  </li>
+                </div>
+                
+                <!-- 产品展示的条件配置 -->
+                <div v-if='item1.prdShowConditons.length>0&&item1.prdShowConditons[0].prdDisplayLocations!=""'>
+                  <span>产品展示位置：</span>
+                  <li v-for='(item2,index2) in item1.prdShowConditons' :key='index2'>
+                    <!-- <p>
+                      时间类型：{{item2.dateType=="1"?"日期":"周期"}}
+                    </p> -->
+                    <p>
+                      <!-- <span>产品展示位置：{{item2.prdDisplayLocationNameList.toString()}}</span> -->
+                       <!--1140 新需求只留位置 -->
+                      <span>{{item2.prdDisplayLocationNameList.toString()}}</span>
+                    </p>
+                    <!-- <p>
+                      <span v-if='item2.dateType==1'>展示时间：{{item2.dateStart}}~{{item2.dateEnd}}</span>
+                    </p>
+                    <p>
+                      <span v-if='item2.dateType==2'>展示周期：
+                        <span v-if='item2.weekCode.toString().indexOf("1")>=0'>周一 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("2")>=0'>周二 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("3")>=0'>周三 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("4")>=0'>周四 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("5")>=0'>周五 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("6")>=0'>周六 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}<br></span>
+                        <span v-if='item2.weekCode.toString().indexOf("7")>=0'>周日 {{item2.dateStart.split(" ")[1]}}~{{item2.dateEnd.split(" ")[1]}}</span>
+                      </span>
+                    </p> -->
+                  </li>
+                </div>
+                <div v-if='item1.displayConditon.advLocationNameList!=null&&item1.displayConditon.advLocationNameList.length>0'>
+                  <span>广告位：</span> 
+                  <li>{{item1.displayConditon.advLocationNameList.toString()}}</li> 
+                </div>
+                <div v-if='item1.displayConditon.actLocationNameList!=null&&item1.displayConditon.actLocationNameList.length>0'>
+                  <span>活动：</span> 
+                  <li>{{item1.displayConditon.actLocationNameList.toString()}}</li> </div>
+                <div v-if='item1.displayConditon.contentNameList!=null&&item1.displayConditon.contentNameList.length>0'>
+                  <span>内容：</span> 
+                  <li>{{item1.displayConditon.contentNameList.toString()}}</li>
+                </div>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <el-radio-group v-model="item1.condConnSymbol" :disabled='twoDisableRadio' class='radioGroup'>
+          <el-radio-button @click.native.prevent='changeRadio(1,"twoLevelUserCondition",index1)' label=1 value=1>且</el-radio-button>
+          <el-radio-button @click.native.prevent='changeRadio(2,"twoLevelUserCondition",index1)' label=2 value=2>或</el-radio-button>
+        </el-radio-group>
+        </div>
+      </div>
+      <div v-for='(items,index5) in twoLevelUserCondition.filter(i => i.dataType!="3" )' :key="index5">
+          <div class='addSmall'  v-if='index5==twoLevelUserCondition.filter(i => i.dataType!="3" ).length-1'>
+            <span style='cursor:pointer' @click='addERJI("twoLevelUserCondition")'>新增条件</span>
+          </div>
+        </div>
+      </div>
+      <div class='addBtn' v-if='!showtwoLevelUserCondition||twoLevelUserCondition.length==0'>
+        <span style='cursor:pointer' @click='addBigFun'>新增条件</span>
+      </div>
+    </div>
+
+    <el-dialog title="配置条件" fullscreen modal='false' destroy-on-close width='90%'  :visible.sync="dialogVisible">
+      <user-marke-config @childFun='childFun' :dialogVisible='dialogVisible' :formData='form'></user-marke-config>
+    </el-dialog>
+  </div>
+</template>
+<script>
+import userMarkeConfig from './userMarketMangeConfig'
+import {BankPrdselectOne} from '../../../apis/index'
+export default {
+  components:{userMarkeConfig},
+  data () {
+    return {
+      dialogVisible:false,
+      oneLevelUserCondition:[
+        {
+          ageConnSymbol: "",
+          ageEndSymbol: "",
+          ageStartSymbol: "",
+          conditionVisible: "",
+          displayConditon: {},
+          holdSharesPeakValueConnSymbol: "",
+          holdSharesPeakValueEndAmount: "",
+          holdSharesPeakValueEndSymbol: "",
+          holdSharesPeakValueStartAmount: "",
+          holdSharesPeakValueStartSymbol: "",
+          holdSharesStatus: "",
+          investmentStatus: "",
+          openAccountStatus: "",
+          positionAndTime: "",
+          prdShowConditons: [],
+          realNameStatus: "",
+          regConnectionSymbol: "",
+          regEndSymbol: "",
+          regEndTime: "",
+          regStartSymbol: "",
+          regStartTime: "",
+          userEndAge: "",
+          userRegStatus: "",
+          userRegionConditions: [],
+          userStartAge: "",
+          condConnSymbol:1,
+          puhuiOpenAccountStatus:'',
+        }
+      ],
+      twoLevelUserCondition:[
+        {
+          ageConnSymbol: "",
+          ageEndSymbol: "",
+          ageStartSymbol: "",
+          conditionVisible: "",
+          displayConditon: {},
+          holdSharesPeakValueConnSymbol: "",
+          holdSharesPeakValueEndAmount: "",
+          holdSharesPeakValueEndSymbol: "",
+          holdSharesPeakValueStartAmount: "",
+          holdSharesPeakValueStartSymbol: "",
+          holdSharesStatus: "",
+          investmentStatus: "",
+          openAccountStatus: "",
+          positionAndTime: "",
+          prdShowConditons: [],
+          realNameStatus: "",
+          regConnectionSymbol: "",
+          regEndSymbol: "",
+          regEndTime: "",
+          regStartSymbol: "",
+          regStartTime: "",
+          userEndAge: "",
+          userRegStatus: "",
+          userRegionConditions: [],
+          userStartAge: "",
+          condConnSymbol:1,
+          puhuiOpenAccountStatus:'',
+        }
+      ],
+      oneAndTwoLevelSymbol:2,
+      disabledRadio2:false, // 一级的逻辑关系是否是可选
+      oneDisableRadio:false, // 第一个 二级逻辑关系是否是可选
+      twoDisableRadio:false, // 第一个 二级逻辑关系是否是可选
+      type:"", // 新增条件时一级 还是二级
+      index:0, // 当前新增条件是第几项 
+      showtwoLevelUserCondition:false,
+      form:'',// 编辑二级时把数据带到 子组件
+    }
+  },
+  created() {
+    if (this.$route.query.id) {
+      this.BankPrdselectOneFun()
+    }
+  },
+  watch:{
+    oneAndTwoLevelSymbol () {
+      let obj = {
+        twoLevelUserCondition:this.twoLevelUserCondition,
+        oneLevelUserCondition:this.oneLevelUserCondition,
+        oneAndTwoLevelSymbol: this.oneAndTwoLevelSymbol
+      }
+      this.$emit("getconfigMsgData",obj)
+    },
+  },
+
+  methods: {
+    // 切换状态
+    changeRadio (e,type,index) {
+      if (type=='twoLevelUserCondition') {
+        this.twoLevelUserCondition[index].condConnSymbol=Number(e)
+      }
+      if (type=='oneLevelUserCondition') {
+        this.oneLevelUserCondition[index].condConnSymbol=Number(e)
+      }
+      
+      let obj = {
+        twoLevelUserCondition:this.twoLevelUserCondition,
+        oneLevelUserCondition:this.oneLevelUserCondition,
+        oneAndTwoLevelSymbol: this.oneAndTwoLevelSymbol
+      }
+       console.log('obj',obj)
+      this.$forceUpdate()
+      this.$emit("getconfigMsgData",obj)
+    },
+    // 获取详情
+    BankPrdselectOneFun () {
+      let params= {
+        headerModel:{
+          systemType: 'h5',
+          message:'单个查询产品或银行的配置',
+          requesttime:Date.parse(new Date()),
+          version:"",
+          token:"",
+          deviceId:"",
+          appFlag:"",
+          loginUid:"",
+        },
+        datatypeParam:{
+          id:this.$route.query.id,
+          productOrBank:'2', //1产品2银行
+        }
+      }
+      BankPrdselectOne(params).then((res) => {
+        if (res.headerModel.code==0) {
+          this.oneLevelUserCondition=res.datatypeParam.oneLevelUserCondition
+          this.twoLevelUserCondition=res.datatypeParam.twoLevelUserCondition
+          this.oneAndTwoLevelSymbol=res.datatypeParam.oneAndTwoLevelSymbol
+          if (this.twoLevelUserCondition.length>0&&this.twoLevelUserCondition[0].conditionVisible!='') {
+            this.showtwoLevelUserCondition=true
+          }
+
+          let obj = {
+            twoLevelUserCondition:this.twoLevelUserCondition,
+            oneLevelUserCondition:this.oneLevelUserCondition,
+            oneAndTwoLevelSymbol: this.oneAndTwoLevelSymbol
+          }
+          this.$emit("getconfigMsgData",obj)
+        } else {
+          this.$message.info(res.headerModel.message)
+        }
+      })
+    },
+    // 子组件点击提交的方法
+    childFun (form) {
+      console.log('form',form)
+      this.dialogVisible=false
+      if (this.type=='oneLevelUserCondition') {
+        this.oneLevelUserCondition[this.index]=form
+      } else if (this.type=='twoLevelUserCondition') {
+        this.twoLevelUserCondition[this.index]=form
+      }
+      let obj = {
+        twoLevelUserCondition:this.twoLevelUserCondition,
+        oneLevelUserCondition:this.oneLevelUserCondition,
+        oneAndTwoLevelSymbol: this.oneAndTwoLevelSymbol
+      }
+      console.log('obj22222',obj)
+      this.$emit("getconfigMsgData",obj)
+    },
+    // 一级 新增条件
+    addBigFun () {
+     this.twoLevelUserCondition=[
+        {
+          ageConnSymbol: "",
+          ageEndSymbol: "",
+          ageStartSymbol: "",
+          conditionVisible: "",
+          displayConditon: {},
+          holdSharesPeakValueConnSymbol: "",
+          holdSharesPeakValueEndAmount: "",
+          holdSharesPeakValueEndSymbol: "",
+          holdSharesPeakValueStartAmount: "",
+          holdSharesPeakValueStartSymbol: "",
+          holdSharesStatus: "",
+          investmentStatus: "",
+          openAccountStatus: "",
+          positionAndTime: "",
+          prdShowConditons: [],
+          realNameStatus: "",
+          regConnectionSymbol: "",
+          regEndSymbol: "",
+          regEndTime: "",
+          regStartSymbol: "",
+          regStartTime: "",
+          userEndAge: "",
+          userRegStatus: "",
+          userRegionConditions: [],
+          userStartAge: "",
+          condConnSymbol:1,
+          puhuiOpenAccountStatus:'',
+        }
+      ],
+      this.showtwoLevelUserCondition=true
+      // this.lists.push(obj)
+    },
+    // 二级 新增条件
+    addERJI (type) {
+      console.log(type)
+      let obj={
+        condConnSymbol:1,
+        ageConnSymbol: "",
+        ageEndSymbol: "",
+        ageStartSymbol: "",
+        conditionVisible: "",
+        displayConditon: {},
+        holdSharesPeakValueConnSymbol: "",
+        holdSharesPeakValueEndAmount: "",
+        holdSharesPeakValueEndSymbol: "",
+        holdSharesPeakValueStartAmount: "",
+        holdSharesPeakValueStartSymbol: "",
+        holdSharesStatus: "",
+        investmentStatus: "",
+        openAccountStatus: "",
+        positionAndTime: "",
+        prdShowConditons: [],
+        realNameStatus: "",
+        regConnectionSymbol: "",
+        regEndSymbol: "",
+        regEndTime: "",
+        regStartSymbol: "",
+        regStartTime: "",
+        userEndAge: "",
+        userRegStatus: "",
+        userRegionConditions: [],
+        userStartAge: "",
+        puhuiOpenAccountStatus:'',
+      }
+      if (type==='oneLevelUserCondition') {
+        this.oneLevelUserCondition.push(obj)
+      }
+      if (type==='twoLevelUserCondition') {
+        this.twoLevelUserCondition.push(obj)
+      }
+    },
+    // 编辑限制条件
+    addConfig (type,index) {
+      console.log(index)
+      this.form=''
+      this.type=type
+      this.index=index
+      this.dialogVisible=true
+    },
+    // 删除二级
+    deleteFun (type,index,id) {
+      console.log(id)
+      if (type=='oneLevelUserCondition') {
+        // this.oneLevelUserCondition.splice(index,1)
+        this.oneLevelUserCondition[index].dataType='3'
+        this.$forceUpdate()
+      } else if (type=='twoLevelUserCondition') {
+        // this.twoLevelUserCondition.splice(index,1)
+        this.twoLevelUserCondition[index].dataType='3'
+        let onlyAAarr=this.twoLevelUserCondition.filter(i => i.dataType!='3' )
+        if (onlyAAarr.length==0) {
+          this.showtwoLevelUserCondition=false
+        }
+        this.$forceUpdate()
+      }
+      let obj = {
+        twoLevelUserCondition:this.twoLevelUserCondition,
+        oneLevelUserCondition:this.oneLevelUserCondition,
+        oneAndTwoLevelSymbol: this.oneAndTwoLevelSymbol
+      }
+      this.$emit("getconfigMsgData",obj)
+    },
+    // 编辑
+    EditFun (type,index,form) {
+      console.log("编辑数据",form)
+      this.index=index
+      this.type=type
+      this.dialogVisible=true
+      // this.form=form
+      this.form=JSON.stringify(form)
+    }
+  },
+  
+}
+</script>
+<style lang="less" scoped>
+.contentDiv {
+  margin-bottom: 20px;
+}
+
+.content {
+  background: #f1f1f1;
+  padding: 10px;
+  position: relative;
+  .el-icon-delete{
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    font-size: 26px;
+  }
+  .el-icon-edit {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 70px;
+    font-size: 26px;
+  }
+  .title {
+    color: #409EFF;
+  }
+  .noVisib {
+    color: red;
+  }
+  ul {
+    >div {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top:10px;
+      span {
+        width: max-content;
+        margin-top:10px
+      }
+    }
+    li {
+      display: inline-block;
+      width: max-content;
+      padding: 0px 10px;
+      border: 1px solid #333;
+      margin: 10px 10px 0 0;
+      border-radius: 10px;
+    }
+  }
+}
+
+.configMsg {
+  border-left: 6px solid #409EFF;
+  >div {
+    padding-bottom: 30px;
+  }
+  .addBig {
+    position: relative;
+    width: 100%;
+    background: #f1f1f1;
+    min-height: 80px;
+    line-height: 80px;
+    text-align: center;
+    margin-bottom: 20px;
+    .el-icon-delete{
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 40px;
+      font-size: 26px;
+    }
+    
+  }
+  .addBigother {
+    margin-bottom: 20px;
+  }
+  .radioGroup ,.addSmall{
+    margin-left: 10px;
+  }
+  
+  
+}
+.addSmall {
+  margin-top: 20px;
+  border: 1px dashed #ccc;
+  padding: 0 50px;
+  width: 80px;
+  text-align: center;
+}
+  .lastClass{
+    padding-bottom: 0;
+  }
+  .radioGroup2{
+    margin-top: 20px;
+  }
+  .addBtn {
+    width: 100%;
+    text-align: center;
+    border: 1px dashed #ccc;
+    margin-top: 20px;
+  }
+  /deep/ .el-dialog__header {
+    border-bottom: 1px solid #ccc;
+  }
+  
+</style>

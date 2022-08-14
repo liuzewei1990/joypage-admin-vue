@@ -1,0 +1,19 @@
+._common_ {
+  padding: 7px 0 !important;
+  color: #333;
+}
+._common_color_blue_ {
+  color: #409eff;
+}
+._common_color_success_ {
+  color: #67c23a;
+}
+._common_color_warning_ {
+  color: #e6a23c;
+}
+._common_color_danger_ {
+  color: #f56c6c;
+}
+._common_color_info_ {
+  color: #909399;
+}
