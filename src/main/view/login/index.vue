@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-form :model="ruleForm2" :rules="rules2" status-icon ref="ruleForm2" label-position="left" label-width="0px" class="demo-ruleForm login-page">
-      <p class="title">系统登录</p>
+      <p class="title">运营系统登录</p>
       <el-form-item prop="username">
         <el-input type="text" v-model="ruleForm2.username" name="username" autocomplete="off" placeholder="用户名" :autofocus="false"></el-input>
       </el-form-item>
@@ -77,25 +77,25 @@ export default {
   /* width: 100%; */
   /* height: 100%; */
   background: #eee;
-  background: url("../../assets/images/bgimg.png") no-repeat;
+  background: url("../../assets/images/bgimg.jpg") no-repeat;
   background-size: cover;
+  background-position: center center;
 }
 .login-page {
   -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border-radius: 10px;
   /* margin: 180px auto; */
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 20%;
-  min-width: 260px;
+  width: 300px;
   padding: 35px 35px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.3);
   border: 1px solid #eaeaea;
   .title {
     margin-bottom: 30px;
-    color: #1d96ff;
+    color: #fff;
     font-size: 30px;
     font-weight: 100;
   }

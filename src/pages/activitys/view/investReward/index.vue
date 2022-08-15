@@ -118,6 +118,9 @@ export default {
     }
   },
   mounted() {
+    window.pageAppear = () => {
+      this.$msg.success("pageAppear")
+    }
     this.init()
   },
   //方法集合

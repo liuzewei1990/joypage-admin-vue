@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vue-cli-service serve --mode dev",
     "build:test": "vue-cli-service build --mode test --report",
-    "build:prod": "vue-cli-service build --mode prod"
+    "build:prod": "vue-cli-service build --mode prod",
+    "inspect": "vue-cli-service inspect --mode test"
   },
   "dependencies": {
     "axios": "^0.18.1",

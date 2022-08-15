@@ -2,23 +2,39 @@
 <template>
   <section class="header-container">
     <!-- 左侧logo -->
-    <div class="block block-left" v-show="isCollapse">
+    <!-- <div class="block block-left" v-show="isCollapse">
       <img class="logo" width="29" src="../../../assets/images/logo.png" alt="" />
       <span class="title">比财运营管理系统</span>
-    </div>
+    </div> -->
 
     <!-- 中间内容 -->
-    <div class="block block-center"></div>
+    <div class="block block-center">
+      <!-- 收缩按钮 -->
+      <div class="btn-icons btn-icons-collapse" @click="switchCollapse">
+        <i :class="isCollapse ? 'el-icon-s-unfold' : 'el-icon-s-fold'"></i>
+      </div>
+      <!-- <el-breadcrumb separator="/">
+        <el-breadcrumb-item>{{ menuList[currTab.pid].text }}</el-breadcrumb-item>
+        <el-breadcrumb-item>{{ currTab.title }}</el-breadcrumb-item>
+      </el-breadcrumb> -->
+    </div>
 
     <!-- 右侧操作按钮 -->
     <div class="block block-right">
       <div class="more-actions">
-        <!-- <div class="action-item" @click="clickActionItem('bell')">
-          <span class="el-icon-bell"></span>
+        <div class="action-item" @click="clickActionItem('bell')">
+          <el-badge is-dot class="item">
+            <span class="el-icon-chat-round"></span>
+          </el-badge>
+        </div>
+        <div class="action-item" @click="clickActionItem('bell')">
+          <el-badge class="item" value="1">
+            <span class="el-icon-bell"></span>
+          </el-badge>
         </div>
         <div class="action-item" @click="clickActionItem('edit')">
           <span class="el-icon-edit-outline"></span>
-        </div> -->
+        </div>
         <div class="action-item" @click="screenfull">
           <span class="iconfont" :class="isFullscreen ? 'icon-tuichuzhuanhuan' : 'icon-quanping'"></span>
         </div>
@@ -27,9 +43,9 @@
       <el-dropdown @command="handleCommand">
         <!-- 按钮 -->
         <span class="user-actions">
-          <span class="el-icon-user-solid"></span>
-          <span>{{ userInfo.NAME }}</span
-          ><i class="el-icon-arrow-down el-icon--right"></i>
+          <span class="el-icon-user-img"><img src="https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif?imageView2/1/w/80/h/80" alt="" /></span>
+          <span>{{ userInfo.NAME }}</span>
+          <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <!-- 下拉 -->
         <el-dropdown-menu slot="dropdown">
@@ -81,6 +97,18 @@ export default {
       isCollapse: (state) => state.finsuitStoreConfig.isCollapse,
       userInfo: (state) => state.finsuitStoreUserInfo.userInfo,
     }),
+    ...mapState({
+      activeIndex2: (state) => state.finsuitStoreMenuTabs.activeIndex2,
+      menuTabs: (state) => state.finsuitStoreMenuTabs.menuTabs,
+    }),
+    ...mapState({
+      menuListCode: (state) => state.finsuitStoreMenuList.menuListCode,
+      defaultActive: (state) => state.finsuitStoreMenuList.defaultActive,
+      menuList: (state) => state.finsuitStoreMenuList.menuList,
+    }),
+    currTab() {
+      return this.menuTabs.find((item) => item.id === this.activeIndex2)
+    },
   },
   created() {},
   mounted() {
@@ -90,6 +118,7 @@ export default {
   },
   //方法集合
   methods: {
+    ...mapActions(["switchCollapse"]),
     handleCommand(command) {
       switch (command) {
         case "exit":
@@ -132,6 +161,7 @@ export default {
 
     // 退出系统
     async logout() {
+      this.$emit("hook:logout")
       await this.$api.logout()
       this.$logout()
     },
@@ -169,6 +199,22 @@ export default {
   }
   .block-center {
     flex: 1;
+    height: 100%;
+    .btn-icons {
+      z-index: 1;
+      height: 100%;
+      width: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .btn-icons:hover {
+      background: #f3f3f3;
+    }
+    .btn-icons-collapse {
+      left: 0px;
+    }
   }
   .block-right {
     width: 400px;
@@ -177,20 +223,38 @@ export default {
 
     .more-actions {
       display: flex;
+      height: 100%;
       margin: 2px 20px 0;
       .action-item {
         width: 50px;
-        height: 30px;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
-
+        font-size: 20px;
         cursor: pointer;
+      }
+      .action-item:hover {
+        background: #f3f3f3;
       }
     }
 
     .user-actions {
+      display: flex;
+      align-items: center;
       cursor: pointer;
+      .el-icon-user-img {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        border-radius: 100px;
+        overflow: hidden;
+        margin-right: 5px;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
     }
   }
 }

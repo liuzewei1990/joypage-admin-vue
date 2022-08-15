@@ -104,5 +104,14 @@ export default {
       // commit("SET_MENU_CODE", tabObj.pid || rootState.finsuitStoreMenuList.menuListCode);
       commit("SET_MENU_CODE", tabObj.pid === undefined ? rootState.finsuitStoreMenuList.menuListCode : tabObj.pid)
     },
+
+    /**
+     * 打开首页
+     */
+    openHome({ commit, dispatch, state, rootState }) {
+      let tabs = state.menuTabs
+      console.log(tabs)
+      dispatch("switchTab", tabs[0])
+    },
   },
 }

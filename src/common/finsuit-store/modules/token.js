@@ -23,6 +23,8 @@ export default {
     // 前端登陆
     login({ commit, dispatch, state, rootState }, token) {
       commit("USER_TOKEN", token)
+      // 每次登录清空缓存的tabs
+      dispatch("removeAllTab")
       // 随浏览器关闭而失效
       Cookies.set(TOKEN_KEY, token)
     },

@@ -23,5 +23,5 @@ import main from "./modules/main.js"
  */
 export default new Vuex.Store({
   modules: { ...finsuitStoreModules, main },
-  plugins: [persistedstate],
+  plugins: [...persistedstate],
 })

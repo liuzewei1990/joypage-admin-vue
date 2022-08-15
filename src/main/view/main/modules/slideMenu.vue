@@ -10,8 +10,8 @@
       <div class="main-menu">
         <ul class="main-menu-group">
           <li :class="{ active: index === menuListCode }" v-for="(item, index) in menuList" :key="index" @click="clickOneMenu(index)" @mouseover="mouseoverSetIndexThrottle(index)" @mouseenter="mouseoverEnter" @mouseleave="mouseoutLeave">
-            <!-- <span class="link-icon" :class="item.attributes.icon || 'el-icon-menu'"></span> -->
-            <span class="link-icon el-icon-menu"></span>
+            <span class="link-icon" :class="item.attributes.icon || 'el-icon-menu'"></span>
+            <!-- <span class="link-icon el-icon-menu"></span> -->
             <span class="link-text">{{ item.text.slice(0, 2) }}</span>
             <!-- <span class="right-icon el-icon-arrow-right" v-show="item.children.length > 0"></span> -->
           </li>
@@ -357,7 +357,7 @@ export default {
       padding-left: 0;
     }
     li {
-      padding-right: 145px - @slide-w-off;
+      padding-right: 125px - @slide-w-off;
       height: 40px;
       color: #c9d7ec;
       font-size: 14px;
@@ -368,6 +368,9 @@ export default {
       overflow-x: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    li .link-icon {
+      margin-right: 5px;
     }
     li:hover {
       background-color: #1d324f;

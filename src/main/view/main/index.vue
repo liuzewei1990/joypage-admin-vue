@@ -11,7 +11,7 @@
       <div class="right-content" :class="[menuCollapseStatus ? 'el-main-off' : 'el-main-on', { 'el-main-full': isCollapse }]">
         <!-- 上面头部 -->
         <div class="right-content-header">
-          <Header></Header>
+          <Header ref="Header"></Header>
         </div>
 
         <div class="right-content-body">
@@ -28,7 +28,7 @@
 <script>
 const defaultMenu = {
   id: 9999,
-  text: "概括",
+  text: "首页",
   checked: false,
   attributes: {
     icon: null,
@@ -62,11 +62,27 @@ export default {
       menuList: (state) => state.finsuitStoreMenuList.menuList,
       menuListCode: (state) => state.finsuitStoreMenuList.menuListCode,
     }),
+    ...mapState({
+      activeIndex2: (state) => state.finsuitStoreMenuTabs.activeIndex2,
+      menuTabs: (state) => state.finsuitStoreMenuTabs.menuTabs,
+    }),
   },
   created() {
     this.init()
     this.isShowDevTool()
   },
+  mounted() {
+    this.$on("hook:activated", () => {
+      window.addEventListener("beforeunload", this.beforeunload)
+    })
+    this.$on("hook:deactivated", () => {
+      window.removeEventListener("beforeunload", this.beforeunload)
+    })
+    this.$refs["Header"].$once("hook:logout", () => {
+      window.removeEventListener("beforeunload", this.beforeunload)
+    })
+  },
+
   methods: {
     ...mapActions(["switchCollapse"]),
     ...mapActions(["addTab", "removeTab", "removeAllTab", "removeOutTab", "switchTab"]),
@@ -80,8 +96,11 @@ export default {
     async getMenuList() {
       try {
         let menuList = [defaultMenu]
-        this.openTab(defaultMenu, 0)
-        menuList = menuList.concat(await this.$api.getMenuList()).slice(17, 22)
+        // 设置默认菜单或者刷新时读取正在打开的菜单
+        if (this.menuTabs.length) this.removeOutTab()
+        else this.openTab(defaultMenu, 0)
+        // 获取接口菜单权限
+        menuList = menuList.concat(await this.$api.getMenuList())
         this.$store.commit("SET_MENU_LIST", menuList)
         this.$store.commit("IS_INIT", true)
       } catch (error) {
@@ -105,6 +124,12 @@ export default {
     // 是否显示开发辅助工具
     isShowDevTool() {
       this.isDevTool = this.$route.query["dev"] === "true"
+    },
+
+    // 监听函数
+    beforeunload(event) {
+      event.returnValue = "我在这写点东西..."
+      event.preventDefault()
     },
   },
 }
@@ -169,6 +194,7 @@ export default {
 
 /* 右侧收缩 */
 .el-main-on {
+  transition: margin-left 0.3s;
   margin-left: @slide-w-on;
 }
 .el-main-off {
@@ -176,6 +202,7 @@ export default {
 }
 
 .el-main-full {
+  transition: none;
   margin-left: 0px;
 }
 </style>
