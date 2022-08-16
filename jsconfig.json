@@ -15,5 +15,7 @@
       "dom.iterable",
       "scripthost"
     ]
-  }
+  },
+  // 排除这些目录，提高 IDE 性能
+  "exclude": ["node_modules", "productionTest", "productionGray","production"]
 }
