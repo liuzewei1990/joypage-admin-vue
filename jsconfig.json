@@ -5,17 +5,11 @@
     "baseUrl": "./",
     "moduleResolution": "node",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"],
+      "@common/*": ["src/common/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   // 排除这些目录，提高 IDE 性能
-  "exclude": ["node_modules", "productionTest", "productionGray","production"]
+  "exclude": ["node_modules", "productionTest", "productionGray", "production"]
 }
