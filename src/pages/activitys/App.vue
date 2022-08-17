@@ -2,9 +2,9 @@
   <div id="main">
     <!-- <BreadcrumbTab></BreadcrumbTab> -->
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
+      <router-view ref="krv" v-if="$route.meta.keepAlive" @hook:activated="activated('krv')" @hook:deactivated="deactivated('krv')"></router-view>
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+    <router-view ref="rv" v-if="!$route.meta.keepAlive" @hook:mounted="activated('rv')" @hook:destroyed="deactivated('rv')"></router-view>
   </div>
 </template>
 
@@ -13,6 +13,16 @@
 export default {
   components: {
     // BreadcrumbTab
+  },
+  methods: {
+    activated(refName) {
+      let routerViewInstance = this.$refs[refName]
+      routerViewInstance && routerViewInstance.pageAppear && this.$bus.$on("pageAppear", routerViewInstance.pageAppear)
+    },
+    deactivated(refName) {
+      let routerViewInstance = this.$refs[refName]
+      routerViewInstance && routerViewInstance.pageAppear && this.$bus.$off("pageAppear", routerViewInstance.pageAppear)
+    },
   },
 }
 </script>

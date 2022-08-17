@@ -117,13 +117,13 @@ export default {
     }
   },
   mounted() {
-    window.pageAppear = () => {
-      this.$msg.success("pageAppear")
-    }
     this.init()
   },
   //方法集合
   methods: {
+    pageAppear() {
+      this.$msg.success("pageAppear")
+    },
     async init() {
       await this.getDataList()
     },

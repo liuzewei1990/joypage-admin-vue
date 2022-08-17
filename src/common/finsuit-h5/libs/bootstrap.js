@@ -8,6 +8,10 @@ export default function () {
   locationUrl = locationUrl.split("?")[0]
 
   if (this.$store.getters.isLogin && checkAuthorityUrlByMenuList(locationUrl, this.$store.state.finsuitStoreMenuList.menuList)) {
+    // 当主框架的tabs切换时，会调用子window的pageAppear方法，子window在派发事件到各个路由的监听者
+    window.pageAppear = () => {
+      this.$bus.$emit("pageAppear")
+    }
     this.$mount("#app")
   } else {
     authorityErrorPage.$mount("#app")
