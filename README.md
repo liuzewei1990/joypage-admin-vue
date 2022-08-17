@@ -92,6 +92,7 @@ npm run build:prod [项目名称必填]
 
 ### iframe通信交互 -- 父域调用子域
 - 1、window.pageAppear = function(){}   切换到当前Tab时调用，注意：首次打开不会调用。和App中pageAppear概念一样。
+- 2、注：实际使用中只需在methods中声明pageAppear方法即可，当切换到当前Tab时调用，框架会自动调用该方法
 
 
 ### iframe通信交互 -- 子域调用父域
