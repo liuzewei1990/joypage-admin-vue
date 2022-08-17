@@ -9,7 +9,7 @@
         <ul class="list-unstyled">
           <li>或者你可以去:</li>
           <li class="link-type">
-            <router-link to="/dashboard"> 回首页 </router-link>
+            <a href="../main"> 回首页 </a>
           </li>
           <li class="link-type">
             <a href="https://www.taobao.com/">随便看看</a>
@@ -30,7 +30,6 @@
 <script>
 import errGif from "./401.gif"
 export default {
-  name: "Page401",
   data() {
     return {
       errGif: errGif + "?" + +new Date(),

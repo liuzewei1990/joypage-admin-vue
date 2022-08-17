@@ -1,6 +1,6 @@
 const webpack = require("webpack")
 const path = require("path")
-const cdn = require("./cdn")
+const cdn = require("./cdn.js")
 module.exports = {
   // 开发环境启动运行编译
   runtimeCompiler: process.env.BABEL_ENV !== "production",
@@ -22,7 +22,7 @@ module.exports = {
     main: {
       entry: path.resolve("./src/main/index.js"),
       template: path.resolve("./src/main/index.html"),
-      filename: "index.html",
+      filename: process.env.BABEL_ENV === "development" ? `main/index.html` : "index.html",
     },
   },
 

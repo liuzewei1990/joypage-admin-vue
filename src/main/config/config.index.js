@@ -52,4 +52,4 @@ const CONFIG = {
     aliyuncHost: "https://finsuit.oss-cn-beijing.aliyuncs.com/",
   },
 }
-export default CONFIG[process.env.NODE_ENV]
+export default CONFIG[process.env.VUE_APP_ENV]

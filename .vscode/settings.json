@@ -4,6 +4,16 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
+
   "path-intellisense.extensionOnImport": true,
-  "path-intellisense.autoTriggerNextSuggestion": true
+  "path-intellisense.autoTriggerNextSuggestion": true,
+
+  // liveServer配置代理
+  "liveServer.settings.port": 5500,
+  "liveServer.settings.root": "/productionTest",
+  "liveServer.settings.proxy": {
+    "enable": true,
+    "baseUri": "/omp",
+    "proxyUri": "https://app-test4.bicai365.com/omp"
+  }
 }
