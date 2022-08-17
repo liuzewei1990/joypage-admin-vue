@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import CommonTable from "@common/finsuit-components/CommonTable"
+import CommonTable from "@common/finsuit-components/CommonTable/index.vue"
 import { mapState, mapActions, mapGetters } from "vuex"
 export default {
   components: { CommonTable },

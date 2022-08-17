@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <el-dialog :title="title" :visible.sync="visible">
+  <el-dialog v-bind="$attrs" v-on="$listeners">
     <el-upload class="upload-demo" accept=".jpg, .png" :action="'/omp/activityMng/forUpload'" :on-success="handleSuccess" :on-preview="handlePreview" :on-remove="handleRemove" :before-remove="beforeRemove" multiple :limit="limit" :on-exceed="handleExceed" list-type="picture" :file-list="fileList">
       <el-button size="small" type="primary">点击上传</el-button>
       <div slot="tip" class="el-upload__tip">{{ upTip }}</div>
@@ -15,8 +15,6 @@ export default {
       type: Array,
       default: () => [],
     },
-    visible: Boolean,
-    title: String,
     limit: {
       type: Number,
       default: 1,
@@ -32,9 +30,6 @@ export default {
     this.fileList = this.value
   },
   watch: {
-    visible(newVal) {
-      this.$emit("update:visible", newVal)
-    },
     fileList(newVal) {
       this.$emit("input", newVal)
     },

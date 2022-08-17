@@ -33,8 +33,7 @@ export default class ThrowComponent {
 
     let targetDom = targetMountDom || document.body
     targetDom.appendChild(this.maskInstance.$el)
-
-    this.maskInstance.$props.visible = true
+    this.maskInstance.visible = true
     this.maskInstance.$props.appendElement = targetDom
     this.maskInstance.$props.maskConfig = maskConfig
 
@@ -52,7 +51,7 @@ export default class ThrowComponent {
   }
 
   close() {
-    this.maskInstance.$props.visible = false
+    this.maskInstance.visible = false
   }
 
   // 获取子组件实例

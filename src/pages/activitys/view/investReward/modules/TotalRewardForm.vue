@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <!--  -->
 <template>
   <section class="" data="额外奖励">

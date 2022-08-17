@@ -99,11 +99,11 @@
   </el-container>
 </template>
 <script>
-import RewardForm from "./modules/RewardForm"
-import TopListForm from "./modules/TopListForm"
-import TotalRewardForm from "./modules/TotalRewardForm"
+import RewardForm from "./modules/RewardForm.vue"
+import TopListForm from "./modules/TopListForm.vue"
+import TotalRewardForm from "./modules/TotalRewardForm.vue"
 import selectJson from "./select.json"
-import transformApiDataPost from "./transformApiDataPost"
+import transformApiDataPost from "./transformApiDataPost.js"
 export default {
   provide: { selectJson },
   components: { RewardForm, TopListForm, TotalRewardForm },

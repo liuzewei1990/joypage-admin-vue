@@ -1,8 +1,8 @@
 /* eslint-disable no-new */
 import Vue from "vue"
 import App from "./App.vue"
-import router from "./router"
-import store from "./store/index"
+import router from "./router/index.js"
+import store from "./store/index.js"
 
 import finsuit from "@common/finsuit-h5"
 Vue.use(finsuit)
@@ -20,7 +20,7 @@ import * as trackEvents from "./apis/track-events-api.js"
 Vue.prototype["$trackEvents"] = trackEvents
 
 /* 注册组件抛出器 */
-import ThrowComponent from "@common/finsuit-plugins/throwComponent"
+import ThrowComponent from "@common/finsuit-plugins/throwComponent/index.js"
 Vue.prototype["$throwComponent"] = new ThrowComponent()
 
 /* 登录退出 */

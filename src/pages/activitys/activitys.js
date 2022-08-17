@@ -1,8 +1,8 @@
 /* eslint-disable no-new */
 import Vue from "vue"
 import App from "./App.vue"
-import router from "./router"
-import store from "./store/index"
+import router from "./router/index.js"
+import store from "./store/index.js"
 
 /* 使用finsuit开发插件 */
 import finsuit from "@common/finsuit-h5"
@@ -21,15 +21,15 @@ import * as trackEvents from "./apis/track-events-api.js"
 Vue.prototype["$trackEvents"] = trackEvents
 
 /* 验证器函数 */
-import * as validator from "./utils/validator"
+import * as validator from "./utils/validator.js"
 Vue.prototype["$validator"] = validator
 
 /* 通用select组件 */
-import BcSelect from "@common/finsuit-components/BcSelect"
+import BcSelect from "@common/finsuit-components/BcSelect/index.vue"
 Vue.component("BcSelect", BcSelect)
 
 /* 注册message弹窗 */
-import * as message from "./utils/message"
+import * as message from "./utils/message.js"
 Vue.prototype["$msg"] = message
 
 const app = new Vue({

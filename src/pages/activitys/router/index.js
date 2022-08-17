@@ -11,14 +11,14 @@ export default new Router({
     {
       name: "index",
       path: "/",
-      component: require("../view/main").default,
+      component: require("../view/main/index.vue").default,
       meta: { title: "首页", requiresAuth: false, keepAlive: true },
       // redirect: "/",
     },
     {
       name: "investReward",
       path: "/investReward",
-      component: () => import(/* webpackChunkName: "investReward" */ "../view/investReward"),
+      component: () => import(/* webpackChunkName: "investReward" */ "../view/investReward/index.vue"),
       meta: { title: "投资有礼", requiresAuth: false, keepAlive: true },
     },
     {

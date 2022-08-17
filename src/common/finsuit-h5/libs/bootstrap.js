@@ -2,7 +2,7 @@
  * 页面挂载方法：用于页面挂载拦截使用
  */
 
-import authorityErrorPage from "./authorityErrorPage"
+import authorityErrorPage from "./authorityErrorPage.js"
 export default function () {
   let locationUrl = location.pathname + location.hash
   locationUrl = locationUrl.split("?")[0]

@@ -45,7 +45,7 @@ import BodyTab from "./modules/bodyTab.vue"
 import slideMenu from "./modules/slideMenu.vue"
 
 // 发开辅助工具
-import DevTool from "../../components/DevTool"
+import DevTool from "../../components/DevTool/index.vue"
 import { mapState, mapActions, mapGetters } from "vuex"
 export default {
   components: { Header, BodyTab, slideMenu, DevTool },

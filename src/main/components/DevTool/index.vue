@@ -19,7 +19,7 @@ export default {
     openDevTool() {
       this.$throwComponent
         .throw({
-          component: require("./devTool").default,
+          component: require("./devTool.vue").default,
           maskConfig: {
             title: "开发辅助工具",
             isTransparent: false,

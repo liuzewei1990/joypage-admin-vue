@@ -11,14 +11,14 @@ export default new Router({
     {
       name: "index",
       path: "/",
-      component: require("../view/main").default,
+      component: require("../view/main/index.vue").default,
       meta: { title: "比财后台管理系统", requiresAuth: true, keepAlive: true },
       // redirect: "/",
     },
     {
       name: "login",
       path: "/login",
-      component: require("../view/login").default,
+      component: require("../view/login/index.vue").default,
       meta: { title: "用户登陆 - 比财后台管理系统", requiresAuth: false, keepAlive: true },
       // redirect: "/",
     },

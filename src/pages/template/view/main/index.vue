@@ -110,8 +110,8 @@ let tabObj = {
   icon: "icon-text",
   spread: false,
 }
-import store from "../../store/index"
-import ThrowComponent from "@common/finsuit-plugins/throwComponent"
+import store from "../../store/index.js"
+import ThrowComponent from "@common/finsuit-plugins/throwComponent/index.js"
 import bcselect from "./bcselect.vue"
 export default {
   store,
@@ -238,7 +238,7 @@ export default {
     throwComponent() {
       // 返回组件实例
       let main = this.throwComponents.throw({
-        component: require("./index").default,
+        component: require("./index.vue").default,
         maskConfig: {
           title: "我是标题",
           isTransparent: false,

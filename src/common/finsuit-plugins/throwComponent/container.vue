@@ -6,14 +6,10 @@
 </template>
 
 <script>
-import MaskBox from "@common/finsuit-components/MaskBox"
+import MaskBox from "@common/finsuit-components/MaskBox/index.vue"
 export default {
   components: { MaskBox },
   props: {
-    visible: {
-      type: Boolean,
-      default: false,
-    },
     showLoading: {
       type: Boolean,
       default: false,
@@ -30,7 +26,9 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      visible: true,
+    }
   },
   created() {},
   mounted() {},

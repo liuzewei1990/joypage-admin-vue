@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <!--  -->
 <template>
   <section class="" data="数据注水">
@@ -249,7 +250,7 @@ class FormItem {
   }
 }
 
-import Upload from "../../../components/Upload"
+import Upload from "../../../components/Upload/index.vue"
 export default {
   inject: ["selectJson"],
   props: {

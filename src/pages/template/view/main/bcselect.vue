@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import BcSelect from "@common/finsuit-components/BcSelect"
+import BcSelect from "@common/finsuit-components/BcSelect/index.vue"
 export default {
   components: { BcSelect },
   data() {

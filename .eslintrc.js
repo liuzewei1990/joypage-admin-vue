@@ -13,7 +13,7 @@ module.exports = {
     "no-dupe-keys": "off",
     "no-console": "off",
     "vue/multi-word-component-names": "off",
-    "vue/no-use-v-if-with-v-for": "off",
-    "vue/no-mutating-props": "off",
+    "import/extensions": ["error", "always"],
   },
+  plugins: ["import"],
 }

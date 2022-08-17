@@ -85,12 +85,11 @@
 </template>
 
 <script>
-import CommonTable from "@common/finsuit-components/CommonTable"
-import RewardForm from "./modules/RewardForm"
-import TotalRewardForm from "./modules/TotalRewardForm"
+import CommonTable from "@common/finsuit-components/CommonTable/index.vue"
+import RewardForm from "./modules/RewardForm.vue"
+import TotalRewardForm from "./modules/TotalRewardForm.vue"
 import selectJson from "./select.json"
-import transformApiData from "./transformApiData"
-import transformApiDataPost from "./transformApiDataPost"
+import transformApiData from "./transformApiData.js"
 export default {
   provide: { selectJson },
   components: { CommonTable, RewardForm, TotalRewardForm },

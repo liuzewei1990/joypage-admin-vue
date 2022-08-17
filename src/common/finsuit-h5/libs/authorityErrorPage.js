@@ -3,6 +3,6 @@
  */
 
 import Vue from "vue"
-import AuthorityErrorPage from "@common/finsuit-components/AuthorityErrorPage"
+import AuthorityErrorPage from "@common/finsuit-components/AuthorityErrorPage/index.vue"
 const AuthorityErrorPageConstructor = Vue.extend(AuthorityErrorPage)
 export default new AuthorityErrorPageConstructor()

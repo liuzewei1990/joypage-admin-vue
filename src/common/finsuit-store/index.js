@@ -1,8 +1,8 @@
-import finsuitStoreConfig from "./modules/config"
-import finsuitStoreUserInfo from "./modules/userInfo"
-import finsuitStoreMenuList from "./modules/menuList"
-import finsuitStoreMenuTabs from "./modules/menuTabs"
-import finsuitStoreToken from "./modules/token"
+import finsuitStoreConfig from "./modules/config.js"
+import finsuitStoreUserInfo from "./modules/userInfo.js"
+import finsuitStoreMenuList from "./modules/menuList.js"
+import finsuitStoreMenuTabs from "./modules/menuTabs.js"
+import finsuitStoreToken from "./modules/token.js"
 
 // iframe共享module
 export default {

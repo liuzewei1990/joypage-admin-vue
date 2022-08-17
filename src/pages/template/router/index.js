@@ -11,7 +11,7 @@ export default new Router({
     {
       name: "index",
       path: "/",
-      component: require("../view/main").default,
+      component: require("../view/main/index.vue").default,
       meta: { title: "首页", requiresAuth: false, keepAlive: true },
       // redirect: "/",
     },

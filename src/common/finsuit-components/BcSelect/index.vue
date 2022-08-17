@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import SelectById from "./SelectById"
-import SelectByObj from "./SelectByObj"
+import SelectById from "./SelectById.vue"
+import SelectByObj from "./SelectByObj.vue"
 export default {
   inheritAttrs: false,
   components: { SelectById, SelectByObj },

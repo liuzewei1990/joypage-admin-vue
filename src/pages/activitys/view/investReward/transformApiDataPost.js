@@ -1,5 +1,5 @@
 import selectJson from "./select.json"
-import config from "../../config/config.index"
+import config from "../../config/config.index.js"
 
 export default function (form = {}) {
   let params = {}

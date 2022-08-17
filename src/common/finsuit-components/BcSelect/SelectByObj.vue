@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <!--  -->
 <template>
   <!-- value-key如果为id 因为有重复的产品id，会导致回显的输入框显示错误 -->
