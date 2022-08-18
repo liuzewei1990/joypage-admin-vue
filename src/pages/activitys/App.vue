@@ -12,11 +12,13 @@ export default {
   methods: {
     enter(refName) {
       let routerViewInstance = this.$refs[refName]
-      routerViewInstance && routerViewInstance.pageAppear && this.$bus.$on("pageAppear", routerViewInstance.pageAppear)
+      let pageAppear = routerViewInstance && routerViewInstance.$options.pageAppear && routerViewInstance.$options.pageAppear.bind(routerViewInstance)
+      pageAppear && this.$bus.$on("pageAppear", pageAppear)
     },
     leave(refName) {
       let routerViewInstance = this.$refs[refName]
-      routerViewInstance && routerViewInstance.pageAppear && this.$bus.$off("pageAppear", routerViewInstance.pageAppear)
+      let pageAppear = routerViewInstance && routerViewInstance.$options.pageAppear && routerViewInstance.$options.pageAppear.bind(routerViewInstance)
+      pageAppear && this.$bus.$off("pageAppear", pageAppear)
     },
   },
 }
