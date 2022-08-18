@@ -43,7 +43,8 @@ axiosFinsuit.interceptors.response.use(
 
     // 校验数据格式 是否为json
     if (Object.prototype.toString.call(response.data) !== "[object Object]") {
-      window.parent.exportApi.message({ type: "error", message: "服务器异常" })
+      window.parent.exportApi.exitMessage()
+      // window.parent.exportApi.message({ type: "error", message: "服务器异常" })
       return Promise.reject(new Error("response data not object"))
     }
 

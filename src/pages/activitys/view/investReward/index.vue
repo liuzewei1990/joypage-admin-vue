@@ -175,7 +175,7 @@ export default {
         // let row = this.tableData.tableDataList.find((item) => item.activityStatus == "1") || {}
         // this.$refs["elTable"].toggleRowExpansion(row)
       } catch (error) {
-        this.$msg.error("获取列表数据异常")
+        this.$msg.error(error.message)
       }
       setTimeout(() => {
         this.loading = false

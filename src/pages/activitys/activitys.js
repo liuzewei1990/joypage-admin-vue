@@ -28,10 +28,6 @@ Vue.prototype["$validator"] = validator
 import BcSelect from "@common/finsuit-components/BcSelect/index.vue"
 Vue.component("BcSelect", BcSelect)
 
-/* 注册message弹窗 */
-import * as message from "./utils/message.js"
-Vue.prototype["$msg"] = message
-
 const app = new Vue({
   data() {
     return {

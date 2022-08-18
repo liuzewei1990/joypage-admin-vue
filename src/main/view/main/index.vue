@@ -104,7 +104,7 @@ export default {
         this.$store.commit("SET_MENU_LIST", menuList)
         this.$store.commit("IS_INIT", true)
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
       //   this.openTab(menuList[1].children[0].children[0], 1);
     },
