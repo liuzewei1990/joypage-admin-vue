@@ -5,7 +5,7 @@
       <!--标头查询区-->
       <div slot="search">
         <el-form :inline="true" size="mini" :model="topCheckData" ref="topData">
-          <el-form-item label="活动名称" prop="name">
+          <el-form-item :label="活动名称" prop="name">
             <el-input v-model="topCheckData.name" placeholder="请输入关键字"></el-input>
           </el-form-item>
           <el-form-item label="用户" prop="user">
@@ -94,8 +94,9 @@ export default {
   provide: { selectJson },
   components: { CommonTable, RewardForm, TotalRewardForm },
   data() {
+    this.活动名称 = "活动名称"
+    this.selectJson = selectJson
     return {
-      selectJson,
       tableHeight: 0,
       //表格loading
       loading: false,
