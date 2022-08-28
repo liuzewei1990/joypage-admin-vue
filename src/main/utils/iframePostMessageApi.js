@@ -128,6 +128,10 @@ export default function () {
     this.$logout({ showTip: true, ...options })
   }
 
+  exportApi.newComponent = (options = {}) => {
+    return this.$newComponent(options)
+  }
+
   window.addEventListener("message", function (e) {
     let { message, data } = e.data
 

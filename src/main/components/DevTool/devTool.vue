@@ -64,12 +64,12 @@ export default {
       tabForm: {
         id: Math.floor(Math.random() * 1000000),
         title: "Tab名称",
-        href: "./template.html",
+        href: "/omp/static/html/template/",
       },
       menuForm: {
         id: Math.floor(Math.random() * 1000000),
         title: "模版",
-        href: "./template.html",
+        href: "/omp/static/html/template/",
       },
     }
   },

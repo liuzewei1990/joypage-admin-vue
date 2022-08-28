@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <mask-box v-model="visible" :show-loading="showLoading" :title="maskConfig.title" :hideOnBlur="maskConfig.hideOnBlur" :defaultcloseBtnVisible="maskConfig.defaultcloseBtnVisible" :isTransparent="maskConfig.isTransparent" @on-show="onShow" @on-hide="onHide">
+  <mask-box v-model="visible" :hideOnBlur="maskConfig.hideOnBlur" :isTransparent="maskConfig.isTransparent" @on-show="onShow" @on-hide="onHide">
     <div class="container" @click.self="close"></div>
   </mask-box>
 </template>
@@ -10,10 +10,6 @@ import MaskBox from "@common/finsuit-components/MaskBox/index.vue"
 export default {
   components: { MaskBox },
   props: {
-    showLoading: {
-      type: Boolean,
-      default: false,
-    },
     appendElement: {
       type: Boolean,
       default: false,
@@ -27,11 +23,9 @@ export default {
   },
   data() {
     return {
-      visible: true,
+      visible: false,
     }
   },
-  created() {},
-  mounted() {},
   //方法集合
   methods: {
     onShow() {

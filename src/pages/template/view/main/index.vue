@@ -4,7 +4,7 @@
       <el-col :span="24" class="pading">
         <el-card class="box-card">
           <div slot="header" class="clearfix">
-            <span>BcSelect演示</span>
+            <!-- <span>BcSelect演示</span> -->
           </div>
           <bcselect></bcselect>
         </el-card>
@@ -110,19 +110,18 @@ let tabObj = {
   icon: "icon-text",
   spread: false,
 }
-import store from "../../store/index.js"
-import ThrowComponent from "@common/finsuit-plugins/throwComponent/index.js"
+import devToolVue from "@/main/components/DevTool/devTool.vue"
 import bcselect from "./bcselect.vue"
 export default {
-  store,
   components: { bcselect },
   data() {
     return {
-      throwComponents: new ThrowComponent(),
       isCollapse: false,
     }
   },
-  created() {},
+  created() {
+    window._this = this
+  },
   mounted() {
     window.pageAppear = this.pageAppear
 
@@ -235,22 +234,44 @@ export default {
       window.parent.exportApi.isCollapse(this.isCollapse)
     },
 
-    throwComponent() {
-      // 返回组件实例
-      let main = this.throwComponents.throw({
-        component: require("./index.vue").default,
-        maskConfig: {
-          title: "我是标题",
-          isTransparent: false,
-          defaultcloseBtnVisible: true,
-          hideOnBlur: false,
-        },
-      })
+    async throwComponent() {
+      // this.alert0()
+      this.alerts()
+      // this.alert2()
+      // this.alert3()
+    },
+    async alert0() {
+      this.Alert0 = this.$newComponent(require("./index.vue").default)
+      setTimeout(() => {
+        this.Alert0.close()
+      }, 2000)
+      await this.Alert0.throw()
+    },
+    async alerts() {
+      this.Alert = window.parent.exportApi.newComponent(require("../../components/Alert/index.vue").default, false)
+      this.Alert.aaa = "你经常那段时间承诺书"
+      this.Alert.throw()
+      this.Alert.aaa = "mcmccd"
 
-      // 3秒后和组件实例交互
-      //   setTimeout(() => {
-      //     main.msgbox();
-      //   }, 3000);
+      await this.Alert.throw()
+
+      this.Alert.aaa = "v你的军队空军健康的女科技发达"
+      this.Alert.throw()
+      console.log("Alert :>> ", this.Alert)
+    },
+    async alert2() {
+      this.Alert2 = window.parent.exportApi.newComponent(require("../../components/Alert/index2.vue").default)
+      this.Alert2.bbb = "啵啵啵啵啵啵啵啵啵啵啵啵"
+      this.Alert2.throw()
+      this.Alert2.throw()
+      this.Alert2.throw()
+      console.log("Alert2 :>> ", this.Alert2)
+    },
+
+    async alert3() {
+      let aa = window.parent.exportApi.newComponent(devToolVue)
+      console.log(aa, 111)
+      aa.throw()
     },
   },
 }

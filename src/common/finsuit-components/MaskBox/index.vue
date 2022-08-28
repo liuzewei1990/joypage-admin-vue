@@ -1,9 +1,9 @@
 <template>
   <div class="box-example" :class="{ 'box-example-bg': !isTransparent }" v-show="visible">
-    <div v-show="defaultcloseBtnVisible" class="boxClose icon-close-2">
+    <!-- <div v-show="defaultcloseBtnVisible" class="boxClose icon-close-2">
       <span class="title">{{ title }}</span>
       <span class="btn-close el-icon-close" @click="visible = false"></span>
-    </div>
+    </div> -->
     <div class="box-content" @click.self="close">
       <span v-if="showLoading" class="loading loading-bj-icon"></span>
       <slot v-else></slot>
@@ -29,7 +29,7 @@ export default {
     },
     defaultcloseBtnVisible: {
       type: Boolean,
-      default: true,
+      default: false,
     },
     showLoading: {
       type: Boolean,
@@ -75,11 +75,9 @@ export default {
 @keyframes fideIn {
   0% {
     opacity: 0;
-    transform: scale(0.4);
   }
   100% {
     opacity: 1;
-    transform: scale(1);
   }
 }
 .box-example {
@@ -97,7 +95,7 @@ export default {
   //   box-sizing: border-box;
 }
 .box-example-bg {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.4);
 }
 .box-content {
   margin: auto;

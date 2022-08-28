@@ -20,8 +20,8 @@ import * as trackEvents from "./apis/track-events-api.js"
 Vue.prototype["$trackEvents"] = trackEvents
 
 /* 注册组件抛出器 */
-import ThrowComponent from "@common/finsuit-plugins/throwComponent/index.js"
-Vue.prototype["$throwComponent"] = new ThrowComponent()
+import newComponent from "@/common/finsuit-plugins/newComponent/index.js"
+Vue.prototype["$newComponent"] = newComponent
 
 /* 登录退出 */
 import signout from "./utils/logout.js"

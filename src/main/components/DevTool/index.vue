@@ -17,20 +17,9 @@ export default {
   methods: {
     // 打开调试工具
     openDevTool() {
-      this.$throwComponent
-        .throw({
-          component: require("./devTool.vue").default,
-          maskConfig: {
-            title: "开发辅助工具",
-            isTransparent: false,
-            defaultcloseBtnVisible: true,
-            hideOnBlur: true,
-          },
-        })
-        .$off("close")
-        .$on("close", () => {
-          this.$throwComponent.close()
-        })
+      let devTool = this.$newComponent(require("./devTool.vue").default)
+      devTool.$on("close", devTool.close)
+      devTool.throw()
     },
   },
 }
