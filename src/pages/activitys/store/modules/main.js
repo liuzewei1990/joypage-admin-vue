@@ -4,18 +4,18 @@
  */
 
 const user = {
-  state: {
-    value: "",
-  },
-  getters: {},
-  mutations: {
-    SET_ON_LOAD: (state, value) => {
-      state.value = value
+    state: {
+        value: ""
     },
-  },
-  actions: {
-    async actionDemo({ commit, dispatch, state, rootState }, params = {}) {},
-  },
-}
+    getters: {},
+    mutations: {
+        SET_ON_LOAD: (state, value) => {
+            state.value = value;
+        }
+    },
+    actions: {
+        async actionDemo({ commit, dispatch, state, rootState }, params = {}) {}
+    }
+};
 
-export default user
+export default user;

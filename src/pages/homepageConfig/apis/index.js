@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -31,11 +31,3 @@ export const getContentByContentType = (params = {}, head = {}) => http.omp.get(
 export const queryComprehensive = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, `/ComprehensiveManage/queryComprehensive`, params, head, false, true);
 // 机构 资讯模糊查询
 export const CMgetContentByContentType = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, `/ComprehensiveManage/getContentByContentType`, params, head, false, true);
-
-
-
-
-
-
-
-

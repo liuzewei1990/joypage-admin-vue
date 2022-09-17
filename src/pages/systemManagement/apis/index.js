@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -13,9 +13,9 @@ export const addApplet = (params = {}, head = {}) => http.omp.postParse(config.b
 // 微信小程序列表页
 export const forAppletPageList = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/wechatApplet/forAppletPageList", params, head, false, true);
 // : 删除小程序
-export const delApplet = (params = {},data={}, head = {}) => http.omp.postParse(config.baseUrlHost, `/wechatApplet/delApplet/${data.id}`, params, head, false, true);
+export const delApplet = (params = {}, data = {}, head = {}) => http.omp.postParse(config.baseUrlHost, `/wechatApplet/delApplet/${data.id}`, params, head, false, true);
 // 修改微信小程序
-export const updateApplet = (params = {},data={}, head = {}) => http.omp.postParse(config.baseUrlHost, `/wechatApplet/updateApplet`, params, head, false, true);
+export const updateApplet = (params = {}, data = {}, head = {}) => http.omp.postParse(config.baseUrlHost, `/wechatApplet/updateApplet`, params, head, false, true);
 // 上传图片
 export const forUpload = (params = {}, head = {}) => http.omp.postFrom(config.baseUrlHost, `/finsuitFileUpload/forUpload`, params, head, false, true);
 // 获取所有小程序数据

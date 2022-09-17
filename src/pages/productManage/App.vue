@@ -1,20 +1,18 @@
 <template>
-  <div id="main">
-    <keep-alive>
-      <router-view v-if="$route.meta.keepAlive"></router-view>
-    </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
-  </div>
+    <div id="main">
+        <keep-alive>
+            <router-view v-if="$route.meta.keepAlive"></router-view>
+        </keep-alive>
+        <router-view v-if="!$route.meta.keepAlive"></router-view>
+    </div>
 </template>
 
 <script>
-export default {
-
-}
+    export default {};
 </script>
 
 <style lang="less" scoped>
-body .el-table th.gutter{
-    display: table-cell!important;
-}
+    body .el-table th.gutter {
+        display: table-cell !important;
+    }
 </style>

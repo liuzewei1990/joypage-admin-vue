@@ -1,28 +1,18 @@
 <!--  -->
 <template>
-  <section class=''>addInvestItem</section>
+    <section class="">addInvestItem</section>
 </template>
 
 <script>
-
-export default {
-  components: {},
-  data () {
-    return {
-
+    export default {
+        components: {},
+        data() {
+            return {};
+        },
+        created() {},
+        mounted() {},
+        //方法集合
+        methods: {}
     };
-  },
-  created () {
-
-  },
-  mounted () {
-
-  },
-  //方法集合
-  methods: {
-
-  },
-}
 </script>
-<style lang='less' scoped>
-</style>
+<style lang="less" scoped></style>

@@ -1,7 +1,7 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
     // mode: 'history',
@@ -9,53 +9,53 @@ export default new Router({
 
     routes: [
         {
-            name: 'index',
-            path: '/',
-            component: require('../view/main').default,
-            meta: { title: '首页', requiresAuth: false, keepAlive: true },
+            name: "index",
+            path: "/",
+            component: require("../view/main").default,
+            meta: { title: "首页", requiresAuth: false, keepAlive: true }
             // redirect: "/",
         },
         {
             name: "accuseManage",
             path: "/accuseManage",
-            component: () => import(/* webpackChunkName: "accuseManage" */ '../view/accuseManage/index.vue'),
-            meta: { title: '投诉管理', requiresAuth: false, keepAlive: true },
+            component: () => import(/* webpackChunkName: "accuseManage" */ "../view/accuseManage/index.vue"),
+            meta: { title: "投诉管理", requiresAuth: false, keepAlive: true }
         },
         {
             name: "accuseManage-detail",
             path: "/accuseManage/detail",
-            component: () => import(/* webpackChunkName: "accuseManage-detail" */ '../view/accuseManage/detail.vue'),
-            meta: { title: '新增投诉管理', requiresAuth: false, keepAlive: false },
+            component: () => import(/* webpackChunkName: "accuseManage-detail" */ "../view/accuseManage/detail.vue"),
+            meta: { title: "新增投诉管理", requiresAuth: false, keepAlive: false }
         },
         {
             name: "activityManage",
             path: "/activityManage",
-            component: () => import(/* webpackChunkName: "activityManage" */ '../view/activityManage/index.vue'),
-            meta: { title: '活动管理', requiresAuth: false, keepAlive: true },
+            component: () => import(/* webpackChunkName: "activityManage" */ "../view/activityManage/index.vue"),
+            meta: { title: "活动管理", requiresAuth: false, keepAlive: true }
         },
         {
             name: "activityManage-add",
             path: "/activityManage/add",
-            component: () => import(/* webpackChunkName: "activityManage-add" */ '../view/activityManage/add.vue'),
-            meta: { title: '新增活动管理', requiresAuth: false, keepAlive: false },
+            component: () => import(/* webpackChunkName: "activityManage-add" */ "../view/activityManage/add.vue"),
+            meta: { title: "新增活动管理", requiresAuth: false, keepAlive: false }
         },
         {
             name: "articleManage",
             path: "/articleManage",
-            component: () => import(/* webpackChunkName: "articleManage" */ '../view/articleManage/index.vue'),
-            meta: { title: '帖子管理', requiresAuth: false, keepAlive: true },
+            component: () => import(/* webpackChunkName: "articleManage" */ "../view/articleManage/index.vue"),
+            meta: { title: "帖子管理", requiresAuth: false, keepAlive: true }
         },
         {
             name: "hotProducts",
             path: "/hotProducts",
-            component: () => import(/* webpackChunkName: "hotProducts" */ '../view/hotProducts/index.vue'),
-            meta: { title: '热销产品管理', requiresAuth: false, keepAlive: true },
+            component: () => import(/* webpackChunkName: "hotProducts" */ "../view/hotProducts/index.vue"),
+            meta: { title: "热销产品管理", requiresAuth: false, keepAlive: true }
         },
         {
             name: "hotProducts-add",
             path: "/hotProducts/add",
-            component: () => import(/* webpackChunkName: "hotProducts-add" */ '../view/hotProducts/add.vue'),
-            meta: { title: '新增热销产品', requiresAuth: false, keepAlive: false },
+            component: () => import(/* webpackChunkName: "hotProducts-add" */ "../view/hotProducts/add.vue"),
+            meta: { title: "新增热销产品", requiresAuth: false, keepAlive: false }
         },
         // {
         //     name: "userManage",
@@ -78,8 +78,8 @@ export default new Router({
         {
             name: "videoManage",
             path: "/videoManage",
-            component: () => import(/* webpackChunkName: "videoManage" */ '../view/videoManage/index.vue'),
-            meta: { title: '小视频管理', requiresAuth: false, keepAlive: true },
-        },
+            component: () => import(/* webpackChunkName: "videoManage" */ "../view/videoManage/index.vue"),
+            meta: { title: "小视频管理", requiresAuth: false, keepAlive: true }
+        }
     ]
-})
+});

@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -22,7 +22,7 @@ export const getUserManages = (params) => http.omp.get(config.baseUrlHost, "/fui
 //角色列表
 export const getUserRoles = (params) => http.omp.get(config.baseUrlHost, "/fuisuitRoleManagement/v3.0/forListRoles", params);
 //新增保存
-export const getUserAddSave = (params) => http.omp.get(config.baseUrlHost, "/fuisuitUserManagement/v3.0/forAddUser", params,false,false,true);
+export const getUserAddSave = (params) => http.omp.get(config.baseUrlHost, "/fuisuitUserManagement/v3.0/forAddUser", params, false, false, true);
 //编辑保存
 export const getUserEditSave = (params) => http.omp.get(config.baseUrlHost, "/fuisuitUserManagement/v3.0/forUpdUser", params);
 //删除用户

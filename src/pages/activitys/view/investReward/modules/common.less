@@ -1,89 +1,89 @@
 //间距
 .spacing {
-  // margin-right: 5px;
-  // margin-left: 5px;
-  padding: 0 5px;
-  box-sizing: border-box;
+    // margin-right: 5px;
+    // margin-left: 5px;
+    padding: 0 5px;
+    box-sizing: border-box;
 }
 
 // 边框
 .border {
-  border: 1px solid red;
+    border: 1px solid red;
 }
 
 //居中
 .center {
-  text-align: center;
+    text-align: center;
 }
 
 .flex {
-  margin-top: 5px;
+    margin-top: 5px;
 }
 
 .border-r {
-  border-right: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
 }
 
 // 表单列表标题
 .row-col-box {
-  // margin-bottom: 2px;
-  border-bottom: 1px solid #ececec;
-  background: #f7f7f7;
-  // border: 1px solid red;
-  .row-col-title {
-    text-align: center;
-    color: #606266;
-  }
-  .row-col-title:first-of-type {
-    border-radius: 3px 0 0 3px;
-  }
-  .row-col-title:last-of-type {
-    border-radius: 0 3px 3px 0;
-  }
+    // margin-bottom: 2px;
+    border-bottom: 1px solid #ececec;
+    background: #f7f7f7;
+    // border: 1px solid red;
+    .row-col-title {
+        text-align: center;
+        color: #606266;
+    }
+    .row-col-title:first-of-type {
+        border-radius: 3px 0 0 3px;
+    }
+    .row-col-title:last-of-type {
+        border-radius: 0 3px 3px 0;
+    }
 
-  // 修改col中的title大小
-  /deep/.row-col-title {
-    font-size: 13px;
-    // font-weight: 100;
-  }
+    // 修改col中的title大小
+    /deep/.row-col-title {
+        font-size: 13px;
+        // font-weight: 100;
+    }
 }
 
 //表单列表内容
 .row-col-content {
-  //   background: #faf9f9;
-  // padding-top: 10px;
-  border-bottom: 1px solid #f2f2f2;
-  border-left: 1px solid #f2f2f2;
-  border-right: 1px solid #f2f2f2;
-  .el-form-item {
-    margin: 5px 0;
-  }
-
-  // 解决input水平不对齐问题
-  /deep/.el-form-item__content {
-    line-height: normal;
-  }
-  // 缩小input两边slot的宽度
-  /deep/ .el-input-group__prepend,
-  /deep/.el-input-group__append {
-    padding: 0 5px;
-  }
-
-  /deep/.el-input__inner {
-    padding: 0 6px;
-  }
-
-  .td {
-    display: inline-block;
-    line-height: 30px;
-    font-size: 13px;
-    color: #606266;
-  }
-
-  /deep/ .el-input-number {
-    width: 100%;
-    input {
-      text-align: left;
+    //   background: #faf9f9;
+    // padding-top: 10px;
+    border-bottom: 1px solid #f2f2f2;
+    border-left: 1px solid #f2f2f2;
+    border-right: 1px solid #f2f2f2;
+    .el-form-item {
+        margin: 5px 0;
     }
-  }
+
+    // 解决input水平不对齐问题
+    /deep/.el-form-item__content {
+        line-height: normal;
+    }
+    // 缩小input两边slot的宽度
+    /deep/ .el-input-group__prepend,
+    /deep/.el-input-group__append {
+        padding: 0 5px;
+    }
+
+    /deep/.el-input__inner {
+        padding: 0 6px;
+    }
+
+    .td {
+        display: inline-block;
+        line-height: 30px;
+        font-size: 13px;
+        color: #606266;
+    }
+
+    /deep/ .el-input-number {
+        width: 100%;
+        input {
+            text-align: left;
+        }
+    }
 }

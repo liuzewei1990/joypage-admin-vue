@@ -1,36 +1,39 @@
 {
-   "oneLevelOrgTypeList":[
+    "oneLevelOrgTypeList": [
         {
-            "name":"银行机构",
+            "name": "银行机构",
             "value": 1
-        },{
-            "name":"非银机构",
+        },
+        {
+            "name": "非银机构",
             "value": 2
         }
     ],
-    "secondLevelOrgTypeList":[
+    "secondLevelOrgTypeList": [
         {
-            "name":"基金",
+            "name": "基金",
             "value": 1
-        },{
-            "name":"券商",
+        },
+        {
+            "name": "券商",
             "value": 2
-        },{
-            "name":"保险",
+        },
+        {
+            "name": "保险",
             "value": 3
         }
     ],
-    "orgLocationList":[
+    "orgLocationList": [
         {
-            "name":"中国大陆",
+            "name": "中国大陆",
             "value": 1
-        },{
+        },
+        {
             "name": "中国香港",
             "value": 2
         }
     ],
 
-    
     "userType": [
         {
             "name": "全部用户",

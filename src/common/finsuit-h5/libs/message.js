@@ -1,6 +1,6 @@
-import { Message } from "element-ui"
+import { Message } from "element-ui";
 
-const isIframe = !!window.parent.exportApi
+const isIframe = !!window.parent.exportApi;
 
 /**
  * message封装
@@ -10,10 +10,10 @@ const isIframe = !!window.parent.exportApi
  */
 
 /* 操作成功 */
-export const success = (message = "") => (isIframe ? window.parent.exportApi.message({ type: "success", message }) : Message.success(message))
+export const success = (message = "") => (isIframe ? window.parent.exportApi.message({ type: "success", message }) : Message.success(message));
 
 /* 操作失败 */
-export const fail = (message = "") => (isIframe ? window.parent.exportApi.message({ type: "warning", message }) : Message.warning(message))
+export const fail = (message = "") => (isIframe ? window.parent.exportApi.message({ type: "warning", message }) : Message.warning(message));
 
 /* 操作错误 */
-export const error = (message = "") => (isIframe ? window.parent.exportApi.message({ type: "error", message }) : Message.error(message))
+export const error = (message = "") => (isIframe ? window.parent.exportApi.message({ type: "error", message }) : Message.error(message));

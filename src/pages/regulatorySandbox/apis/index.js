@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -7,7 +7,6 @@ import config from '../config/config.index.js'
  * @param {Obj} head    请求头参数
  * @returns Promise
  */
-
 
 /* 接口描述 */
 /*****************平台设置****************** */
@@ -82,4 +81,3 @@ export const WhitelistselectOne = (params = {}, head = {}) => http.omp.postParse
 export const WhitelistpageQuery = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, `/cRsWhitelist/pageQuery`, params, head, false, true);
 // 批量删除白名单
 export const WhitelistDelete = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, `/cRsWhitelist/delete`, params, head, false, true);
-

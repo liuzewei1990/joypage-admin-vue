@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -28,7 +28,6 @@ export const updateStatusApi = (params = {}, head = {}) => http.omp.get(config.b
 export const deleteStatusApi = (params = "", head = {}) => http.omp.get(config.baseUrlHost, "/prdCategory/selectCount", params, head, false, true);
 //产品大类 列表删除
 export const deleteApi = (params = "", head = {}) => http.omp.get(config.baseUrlHost, "/prdCategory/delete", params, head, false, true);
-
 
 /* 产品系列管理接口 */
 //进入产品系列列表初始化参--下拉框
@@ -70,7 +69,6 @@ export const importDeposit = (params = {}, head = {}) => http.omp.postFrom(confi
 //存款导出
 export const exportDeposit = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/prdDeposit/exportDeposit", params, head, false, true);
 
-
 /* 产品管理--理财产品管理 */
 //进入存款产品管理初始化参--下拉框
 export const forFinancePage = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/prdFinance/forFinancePage", params, head, false, true);
@@ -99,7 +97,6 @@ export const importInvestFina = (params = {}, head = {}) => http.omp.postFrom(co
 //存款导出投融资产品
 export const exportInvestFina = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/prdFinance/exportInvestFina", params, head, false, true);
 
-
 /* 产品管理--基金产品管理 */
 //进入存款产品管理初始化参--下拉框
 export const forFundPage = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/prdFund/forFundPage", params, head, false, true);
@@ -124,7 +121,6 @@ export const importExportFund = (params = {}, head = {}) => http.omp.postFrom(co
 //存款导出货基产品
 export const exportExportFund = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/prdFund/exportExportFund", params, head, false, true);
 
-
 /* 产品管理--平台权益配置管理 */
 //进入页面初始化下拉框
 export const queryParameter = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/prdFloatRateManage/queryParameter", params, head, false, true);
@@ -140,4 +136,3 @@ export const updPrdFloatRate = (params = {}, head = {}) => http.omp.postParse(co
 export const deletePrdFloatRate = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/prdFloatRateManage/deletePrdFloatRate", params, head, false, true);
 //异业渠道
 export const getYiYeChannel = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "prdFloatRateManage/getYiYeChannel ", params, head, false, true);
-

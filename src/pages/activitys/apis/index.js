@@ -1,5 +1,5 @@
-import http from "@common/finsuit-http/index.js"
-import config from "../config/config.index.js"
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -16,17 +16,17 @@ import config from "../config/config.index.js"
  */
 
 // 查询
-export const investRewardQueryList = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/getInvestGifts", params, head, false, false)
+export const investRewardQueryList = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/getInvestGifts", params, head, false, false);
 // 修改活动状态
-export const investRewardToStatus = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/updInvestStatus", params, head, false, false)
+export const investRewardToStatus = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/updInvestStatus", params, head, false, false);
 // 删除单条
-export const investRewardDeleteData = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/delInvestGiftsInfo", params, head, false, false)
+export const investRewardDeleteData = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/delInvestGiftsInfo", params, head, false, false);
 // 复制
-export const investRewardCopyData = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/copy", params, head, false, false)
+export const investRewardCopyData = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/copy", params, head, false, false);
 // 新增
-export const investRewardAddData = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/addInvestGifts", params, head, false, false)
+export const investRewardAddData = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/addInvestGifts", params, head, false, false);
 // 发放奖励
-export const investPostReward = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/provideReward", params, head, false, false)
+export const investPostReward = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/provideReward", params, head, false, false);
 
 /**
  * 投资有礼活动
@@ -36,7 +36,7 @@ export const investPostReward = (params = {}, head = {}) => http.act.post(config
  */
 
 // demo
-export const demo = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/demo", params, head, false, false)
+export const demo = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/demo", params, head, false, false);
 
 /**
  * 查询产品列表
@@ -45,7 +45,7 @@ export const demo = (params = {}, head = {}) => http.act.post(config.baseUrlHost
  * @returns
  */
 
-export const getPrdListByOrgId = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/wealCoupon/getPrdListByOrgId", params, head, false, false)
+export const getPrdListByOrgId = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/wealCoupon/getPrdListByOrgId", params, head, false, false);
 
 /**
  * 查询机构列表
@@ -53,9 +53,9 @@ export const getPrdListByOrgId = (params = {}, head = {}) => http.act.post(confi
  * @param {*} head
  * @returns
  */
-export const getOrgList = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/getOrgList", params, head, false, false)
+export const getOrgList = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/investGifts/getOrgList", params, head, false, false);
 
 // 根据类型查询权益
-export const getWealBenefitByType = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/wealReward/getWealBenefitByType", params, head, false, false)
+export const getWealBenefitByType = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/wealReward/getWealBenefitByType", params, head, false, false);
 /* 奖励信息下拉 */
-export const getRewardInfoList = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/actTeam/getRewardInfoList", params, head, false, false)
+export const getRewardInfoList = (params = {}, head = {}) => http.act.post(config.baseUrlHost, "/actTeam/getRewardInfoList", params, head, false, false);

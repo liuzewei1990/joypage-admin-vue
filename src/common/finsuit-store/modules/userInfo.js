@@ -3,14 +3,14 @@
  */
 
 export default {
-  state: {
-    // iframe共享的用户信息
-    userInfo: {},
-  },
-  mutations: {
-    ["USER_INFO"](state, userInfo) {
-      state.userInfo = userInfo
+    state: {
+        // iframe共享的用户信息
+        userInfo: {}
     },
-  },
-  actions: {},
-}
+    mutations: {
+        ["USER_INFO"](state, userInfo) {
+            state.userInfo = userInfo;
+        }
+    },
+    actions: {}
+};

@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -38,24 +38,13 @@ export const TwoMenugetorder = (params = {}, head = {}) => http.omp.get(config.b
 // 详情
 export const TwoMenugeselectOne = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, `/tWealthTwoMenu/selectOne`, params, head, false, true);
 
-
-
-
-
-
-
-
-
-
-
-
 // 查询广告位置列表页
 export const getAdvertPositPage = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/advert/getAdvertPositPage", params, head, false, true);
 // 初始化广告位置管理参数列表
 export const forAdvertPositPage = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/advert/forAdvertPositPage", params, head, false, true);
 // 查询广告位置详情
 export const advPositDetail = (params = {}, id, head = {}) => http.omp.get(config.baseUrlHost, `/advert/advPositDetail/${id}`, params, head, false, true);
-// 接口名称: 修改广告位置接口地址: 
+// 接口名称: 修改广告位置接口地址:
 export const updateAdvPosit = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, `/advert/updateAdvPosit`, params, head, false, true);
 // 接口名称: 根据广告位置id查询对应的渠道和设备列表
 export const getFlagAndDeviceTypeByPosit = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, `/advert/getFlagAndDeviceTypeByPosit`, params, head, false, true);

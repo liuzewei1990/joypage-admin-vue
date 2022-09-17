@@ -1,5 +1,5 @@
-import http from '@common/finsuit-http/index.js'
-import config from '../config/config.index.js'
+import http from "@common/finsuit-http/index.js";
+import config from "../config/config.index.js";
 
 /**
  * API统一管理规范
@@ -8,7 +8,7 @@ import config from '../config/config.index.js'
  * @returns Promise
  */
 
- /* 机构管理--公共接口 */
+/* 机构管理--公共接口 */
 //查询银行名称
 export const queryOrgNameByBankType = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/bankBackStageManage/queryOrgNameByBankType", params, head, false, true);
 //查询机构银行下产品名称
@@ -36,7 +36,6 @@ export const getProvinceCity = (params = {}, head = {}) => http.omp.get(config.b
 //省市接口请求,mock数据
 // export const getProvinceCityList = (params = {}, head = {}) => http.omp.postParse('http://easy-mock.liuup.com/mock/60bddb463613fa05c7da75ab/Provinces_and_cities', "/finsuit/finsuitPhone/deal", params, head, false, true);
 
-
 /* 商业银行管理 */
 //商业银行列表查询
 export const queryCommercialBankList = (params = {}, head = {}) => http.omp.post(config.baseUrlHost, "/bankBackStageManage/queryCommercialBankList", params, head, false, true);
@@ -47,7 +46,6 @@ export const updateCommercialBank = (params = {}, head = {}) => http.omp.postPar
 //商业银行删除
 export const deleteCommercialBank = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/bankBackStageManage/deleteCommercialBank", params, head, false, true);
 
-
 /* 银行动态管理 */
 //银行动态列表查询
 export const queryBankDynamicsList = (params = {}, head = {}) => http.omp.post(config.baseUrlHost, "/bankMaintainAndDynamics/queryBankDynamicsList", params, head, false, true);
@@ -57,7 +55,6 @@ export const createBankDynamics = (params = {}, head = {}) => http.omp.postParse
 export const updBankDynamics = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/bankMaintainAndDynamics/updBankDynamics", params, head, false, true);
 //银行动态删除
 export const delBankDynamics = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/bankMaintainAndDynamics/delBankDynamics", params, head, false, true);
-
 
 /* 直销银行管理 */
 //直销银行列表查询
@@ -71,7 +68,6 @@ export const deleteOrg = (params = {}, head = {}) => http.omp.postParse(config.b
 //直销银行-查看排序值是否重复
 export const checkDuplicateSortNum = (params = {}, head = {}) => http.omp.post(config.baseUrlHost, "/bankBackStageManage/checkDuplicateSortNum", params, head, false, true);
 
-
 /* 银行产品维护时间管理 */
 //维护时间管理列表查询
 export const queryBankProductsWeiList = (params = {}, head = {}) => http.omp.post(config.baseUrlHost, "/bankMaintainAndDynamics/queryBankProductsWeiList", params, head, false, true);
@@ -81,7 +77,6 @@ export const createBankProductsWei = (params = {}, head = {}) => http.omp.postPa
 export const updBankProductsWei = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/bankMaintainAndDynamics/updBankProductsWei", params, head, false, true);
 //维护时间管理删除
 export const delBankProductsWei = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/bankMaintainAndDynamics/delBankProductsWei", params, head, false, true);
-
 
 /* 电子账户绑定卡管理 */
 //维护时间管理列表查询
@@ -95,7 +90,6 @@ export const deleteElecAccount = (params = {}, head = {}) => http.omp.postParse(
 //批量删除
 export const deleteElecAccountList = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/bankBackStageManage/deleteElecAccountList", params, head, false, true);
 
-
 /* 基金公司管理 */
 //基金公司管理列表查询
 export const queryFundCompanyNames = (params = {}, head = {}) => http.omp.post(config.baseUrlHost, "/orgBackStageManage/queryFundCompanyNames", params, head, false, true);
@@ -107,8 +101,6 @@ export const createFundCompany = (params = {}, head = {}) => http.omp.postParse(
 export const updFundCompany = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/orgBackStageManage/updFundCompany", params, head, false, true);
 //基金公司管理删除
 export const deleteFundCompany = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/orgBackStageManage/deleteFundCompany", params, head, false, true);
-
-
 
 /* 证券公司管理 */
 //证券公司管理列表查询
@@ -126,13 +118,13 @@ export const deleteSecurities = (params = {}, head = {}) => http.omp.postParse(c
 //机构展示配置
 export const getData = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "/cOrgCarefullyChosen/getData", params, head, false, true);
 //机构下拉列表分页
-export const selectData = (params = '', head = {}) => http.omp.get(config.baseUrlHost, "/cOrgCarefullyChosen/selectData", params, head, false, true);
+export const selectData = (params = "", head = {}) => http.omp.get(config.baseUrlHost, "/cOrgCarefullyChosen/selectData", params, head, false, true);
 //机构保存
 export const orgSave = (params = {}, head = {}) => http.omp.postParse(config.baseUrlHost, "/cOrgCarefullyChosen/save", params, head, false, true);
 //机构删除
-export const orgDelete = (params = '', head = {}) => http.omp.get(config.baseUrlHost, "/cOrgCarefullyChosen/delete", params, head, false, true);
+export const orgDelete = (params = "", head = {}) => http.omp.get(config.baseUrlHost, "/cOrgCarefullyChosen/delete", params, head, false, true);
 
 //请求机构类型的树形结构
-export const getOrgTypeList= (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "cOrgType/selectType?status=3", params, head, false, true);
-//mock数据 
+export const getOrgTypeList = (params = {}, head = {}) => http.omp.get(config.baseUrlHost, "cOrgType/selectType?status=3", params, head, false, true);
+//mock数据
 // export const getOrgTypeList= (params = {}, head = {}) => http.omp.get("http://easy-mock.liuup.com/mock/6184f0776016ce245cb3069d/orgTypeTree", "finsuit/list", params, head, false, true);

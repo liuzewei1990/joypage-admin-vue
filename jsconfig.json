@@ -1,15 +1,15 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "baseUrl": "./",
-    "moduleResolution": "node",
-    "paths": {
-      "@/*": ["src/*"],
-      "@common/*": ["src/common/*"]
+    "compilerOptions": {
+        "target": "es5",
+        "module": "esnext",
+        "baseUrl": "./",
+        "moduleResolution": "node",
+        "paths": {
+            "@/*": ["src/*"],
+            "@common/*": ["src/common/*"]
+        },
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
     },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
-  },
-  // 排除这些目录，提高 IDE 性能
-  "exclude": ["node_modules", "productionTest", "productionGray", "production"]
+    // 排除这些目录，提高 IDE 性能
+    "exclude": ["node_modules", "productionTest", "productionGray", "production"]
 }
